@@ -185,7 +185,7 @@ PICK UP LOCATION
 (212) 757 - 1720
 ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇</small></p>
 <br><br><br><br>
-<button class="back"style="margin-left:700px;"><a href="/orders">Back</a></button>
+<button class="back"style="margin-left:621px;"><a href="/orders">Back</a></button>
 <button onclick="myFunction()">Print</button>
     </div>
     <script>

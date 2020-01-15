@@ -20,7 +20,7 @@ class OrdersController extends Controller
     {
         $listings = Listing::all();
         $orders = Order::all();
-        $orders = Order::orderBy('created_at', 'DESC')->get(); //order desc
+        $orders = Order::orderBy('created_at', 'DESC')->get(); //order desc// ->paginate(3)
         return view('orders', compact('listings','orders'));}
 
     /**
