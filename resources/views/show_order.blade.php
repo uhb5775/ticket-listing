@@ -130,7 +130,7 @@
                             
                             <td>
                                 BroadwayPass.<br>
-                                Agent: {{ $order->ename }}<br>
+                                <b>Agent: {{ $order->ename }}</b><br>
                                 info@broadwaypass.com<br>
                                 (212) 757 - 1720
                             </td>
@@ -154,7 +154,7 @@
                 </td>
                 
                 <td>
-                ${{ $order->price }}
+                <b>${{ $order->price }}</b>
                 </td>
             </tr>
             
@@ -174,17 +174,13 @@
                 </td>
             </tr>
         </table>
-        <p><small>Your Seats are Secured Now!
-TICKET PICK UP
-ALL TICKETS ARE AVAILABLE FOR PICK UP 1 HOUR
-BEFORE THE SHOW!<br>
-Please pick up your tickets at least 15 minutes prior show time!
-PICK UP LOCATION
-720 7th Ave, on the corner of 48th and 7th Ave
-                                          /Inside Money Exchange/
-(212) 757 - 1720
-▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇</small></p>
-<br><br><br><br>
+        <p><h4>Info:</h4><h5>{{ $order->info }}</h5></p>
+        <center>▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇</center>
+        <p><center><h6>Your Seats are Secured Now!
+TICKET PICK UP ALL TICKETS ARE AVAILABLE FOR PICK UP 1 HOUR BEFORE THE SHOW!<br>
+Please pick up your tickets at least 15 minutes prior show time! PICK UP LOCATION 720 7th Ave, on the corner of 48th and 7th Ave<br>
+/Inside Money Exchange/(212) 757 - 1720</h6></center></p><center>▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ ▇ </center>
+
 <button class="back"style="margin-left:621px;"><a href="/orders">Back</a></button>
 <button onclick="myFunction()">Print</button>
     </div>

@@ -5,7 +5,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Make order<span class="float-right"><a href='/' class="btn btn-secondary">Back</a>
-                <button class="btn btn-warning" onclick="myFunction()">Print</button></div>
+                <!-- <button class="btn btn-warning" onclick="myFunction()">Print</button> -->
+                </div>
 
                                                                                 <script>
                                                                                 function myFunction() {
@@ -57,7 +58,7 @@
                                                 </span>
                                                 <span class="float-right">
 
-                                                <td>Total:
+                                                <td>   Total:
                                                     <i>$</i>
                                                     <input type="text" name="total" id="total" readonly/>
                                                 </td>

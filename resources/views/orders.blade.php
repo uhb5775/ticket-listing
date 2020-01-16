@@ -11,7 +11,7 @@
                         <div class="list-group">
                         @foreach ($orders as $order) 
                         <div class="list-group-item">
-                        {{ $order->event }} <a href="/orders/{{ $order->id }}">   Invoice № {{ $order->id }}</a>    Created at: {{ $order->created_at }}
+                        <a href="/orders/{{ $order->id }}">Invoice № {{ $order->id }}</a>     {{ $order->event }}    Created at: {{ $order->created_at }}
                         </div>
                         @endforeach
                         </div>

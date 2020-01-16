@@ -12,6 +12,10 @@ use Redirect;
 
 class AgentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['home']]);
+    }
     /**
      * Display a listing of the resource.
      *

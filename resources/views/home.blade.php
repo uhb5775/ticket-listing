@@ -36,7 +36,6 @@
                         @else
                         <p>You don't have any events yet!</p>
                         @endif
-                    You are logged in!
                 </div>
             </div>
         </div>
