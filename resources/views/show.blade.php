@@ -40,7 +40,7 @@
                     <input type="text" class="form-control" name="info" id="info" placeholder="Notes">
                     <br>
                     <label for="price">Price $:</label>
-                    <input type="currency" class="form-control" name="price" id="price" placeholder="$">
+                    <input type="currency" class="form-control" name="price" id="price" placeholder="$" onKeyUp="sum()">
                     </div>
                     <div class="form-control" name="date" id="date">
                     Order Date: {{date("Y-m-d")}}
@@ -49,19 +49,30 @@
                     <div>
                     <span class="float-left">
                     <tr>
-                    
                                                 <td>Quantity:</td>
                                                 
                                                 <td>
-                                                    <input type="number" value="" name="quantity" id="quantity" onKeyUp="sum()" />
+                                                <button type="button" onclick="minus(); sum();">-</button>
+<input type="number" name="quantity" id="quantity" min="0" max="50" onKeyUp="sum()">
+<button type="button" onclick="plus(); sum();">+</button>
+
+<script>
+function plus() {
+  document.getElementById("quantity").stepUp(1);
+}
+function minus() {
+  document.getElementById("quantity").stepDown(1);
+}
+</script>
+
                                                 </td>
                                                 </span>
                                                 <span class="float-right">
 
-                                                <td>   Total:
+                                                <td><b>Total:
                                                     <i>$</i>
-                                                    <input type="text" name="total" id="total" readonly/>
-                                                </td>
+                                                    <input name="total" id="total" readonly>
+                                                </b></td>
                                                 </tr>
                                                 </span>
                                                 </div>

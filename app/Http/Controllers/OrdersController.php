@@ -20,7 +20,7 @@ class OrdersController extends Controller
     {
         $listings = Listing::all();
         $orders = Order::all();
-        $orders = Order::orderBy('created_at', 'DESC')->get(); //order desc// ->paginate(3)
+        $orders = Order::orderBy('created_at', 'DESC')->paginate(10); //order desc// ->paginate(3) or / ->get()
         return view('orders', compact('listings','orders'));}
 
     /**
@@ -45,9 +45,9 @@ class OrdersController extends Controller
             'ename' => 'nullable',
             'event' => 'nullable',
             'info' => 'nullable',
-            'price' => 'nullable',
-            'quantity' => 'nullable',
-            'total' => 'nullable',
+            'price' => 'required',
+            'quantity' => 'required',
+            'total' => 'required',
             'created_at' => 'nullable',
         
         ]);    

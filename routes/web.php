@@ -17,7 +17,7 @@ Auth::routes();
 
 Route::resource('listings', 'ListingsController');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('pdf_form', 'PdfController@pdfForm');
+Route::post('pdf_form', 'PdfController@pdfForm');
  Route::post('pdf_download', 'PdfController@pdfDownload');
 
 
