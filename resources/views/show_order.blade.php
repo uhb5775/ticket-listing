@@ -106,7 +106,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/p960x960/37708543_425022211238862_7936713685966258176_o.png?_nc_cat=104&_nc_oc=AQlfcmxcQcX5-QR-Jja3qfNoGlNqEFSs_J-Q52uyAoneAMnZ7dylhlB446qbExq_-M4&_nc_ht=scontent.fsof3-1.fna&oh=684b2dbf66dbef31bba9f1ab1c622c43&oe=5E8E2A38" style="width:100%; max-width:160px;">
+                                <h6 style="width:100%; max-width:260px;">BROADWAY TIX</h6>
                             </td>
                             
                             <td>
@@ -129,9 +129,9 @@
                             </td>
                             
                             <td>
-                                BroadwayPass.<br>
+                                BroadwayTix.<br>
                                 <b>Agent: {{ $order->ename }}</b><br>
-                                info@broadwaypass.com<br>
+                                broadwaytix99@gmail.com<br>
                                 (212) 757 - 1720
                             </td>
                         </tr>

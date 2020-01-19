@@ -15,7 +15,10 @@ class PdfController extends Controller
    
     public function pdfForm()
     {
-        return view('pdf_form');
+        $listings = Listing::all();
+        $orders = Order::find($id);
+        $agents = Agent::all();
+        return view('pdf_form', compact('listings','orders','agents'));
     }
  
     public function pdfDownload(Request $request){

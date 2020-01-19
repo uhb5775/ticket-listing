@@ -21,31 +21,31 @@ class ListingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function pdfForm()
-    {
-        return view('pdf_form');
-    }
+    // public function pdfForm()
+    // {
+    //     return view('pdf_form');
+    // }
  
-    public function pdfDownload(Request $request){
+    // public function pdfDownload(Request $request){
  
-       $this->validate($request, [
-            'event' => 'required',
-            'date' => 'nullable',
-            'price' => 'nullable',
-            'info' => 'nullable',
-        ]);
+    //    $this->validate($request, [
+    //         'event' => 'required',
+    //         'date' => 'nullable',
+    //         'price' => 'nullable',
+    //         'info' => 'nullable',
+    //     ]);
       
-         $data = 
-         [
-            'event' => $request->event,
-            'date' => $request->date,
-            'price' => $request->price,
-            'info' => $request->info
-         ];
-       $pdf = PDF::loadView('pdf_download', $data);
+    //      $data = 
+    //      [
+    //         'event' => $request->event,
+    //         'date' => $request->date,
+    //         'price' => $request->price,
+    //         'info' => $request->info
+    //      ];
+    //    $pdf = PDF::loadView('pdf_download', $data);
    
-       return $pdf->stream('tutsmake.pdf');
-    }
+    //    return $pdf->stream('tutsmake.pdf');
+    // }
 
     public function index()
     {
