@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Orders list</div>
+                <div class="card-header">Orders list<span class="float-right"><a href='/' class="btn btn-secondary">Back</a></span></div>
 
                 <div class="card-body">
                         @if(count($orders))

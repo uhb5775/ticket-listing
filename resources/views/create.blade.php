@@ -4,7 +4,7 @@
   <div class="row justify-content-center">
   <div class="col-md-8">
   <div class="card">
-  <div class="card-header">Create Event<span class="float-right"><a href='/home' class="btn btn-secondary">Back</a></span></div>
+  <div class="card-header">Create Event<span class="float-right"><a href='/' class="btn btn-secondary">Back</a></span></div>
   <div class="card-body">
   
   @if(session('status'))

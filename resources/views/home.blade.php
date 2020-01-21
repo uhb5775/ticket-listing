@@ -4,7 +4,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard<span class="float-right"><a href='/listings/create' class="btn btn-secondary">Create</a></span></div>
+                <div class="card-header">Dashboard<span class="float-right"><a href='/listings/create' class="btn btn-secondary">Add</a>
+                <a href='/' class="btn btn-secondary">Back</a></span></div>
 
                 <div class="card-body">
                     @if (session('status'))
