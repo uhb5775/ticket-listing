@@ -139,6 +139,8 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        //Other service providers
+        Yajra\DataTables\DataTablesServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
     
         Illuminate\Auth\AuthServiceProvider::class,
@@ -191,7 +193,8 @@ return [
     */
 
     'aliases' => [
-        
+        // Other aliases
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         
         'App' => Illuminate\Support\Facades\App::class,
