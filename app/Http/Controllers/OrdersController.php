@@ -7,7 +7,10 @@ use App\Models\Listing;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use PDF;
-use Redirect;
+use Redirect,Response,DB,Config;
+// use Datatables;
+use Yajra\Datatables\Datatables;
+
 
 class OrdersController extends Controller
 {
@@ -18,11 +21,30 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $listings = Listing::all();
+        // $listings = Listing::all();
+        // return view('orders', compact('listings','orders'));}
         $orders = Order::all();
         $orders = Order::orderBy('created_at', 'DESC')->paginate(10); //order desc// ->paginate(3) or / ->get()
-        return view('orders', compact('listings','orders'));}
+        return view('orders', compact('orders'));}
 
+        public function ordersList()
+        {
+            $ordersQuery = Order::query();
+ 
+        $start_date = (!empty($_GET["start_date"])) ? ($_GET["start_date"]) : ('');
+        $end_date = (!empty($_GET["end_date"])) ? ($_GET["end_date"]) : ('');
+ 
+        if($start_date && $end_date){
+ 
+         $start_date = date('Y-m-d', strtotime($start_date));
+         $end_date = date('Y-m-d', strtotime($end_date));
+ 
+         $ordersQuery->whereRaw("date(orders.created_at) >= '" . $start_date . "' AND date(orders.created_at) <= '" . $end_date . "'");
+        }
+        $orders = $ordersQuery->select('*');
+        return datatables()->of($orders) 
+            ->make(true);
+        }
     /**
      * Show the form for creating a new resource.
      *
@@ -62,7 +84,8 @@ class OrdersController extends Controller
         $order->date = $request->input('created_at');
         $order->save();
 
-        return redirect()->to('/orders')->with('success', 'Order created successfully.');
+        $OrdersNewID = $order->id;
+        return redirect()->to('/orders/'.$OrdersNewID)->with('success', 'Order created successfully.');
         }
     /**
      * Display the specified resource.

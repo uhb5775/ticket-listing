@@ -24,11 +24,13 @@ Route::post('pdf_form', 'PdfController@pdfForm');
 Route::get('/order', 'ListingsController@test');
 Route::get('/create_order', 'OrdersController@create');
 
- Route::get('/orders', 'OrdersController@index');
+ Route::get('/orders', 'OrdersController@index'); ////1111
  Route::resource('orders', 'OrdersController');
 
 //  Route::get('/agent', 'AgentsController@index');
  Route::resource('agent', 'AgentsController');
+
+ Route::get('/orders-list', 'OrdersController@ordersList'); ////2222
 
 
 
