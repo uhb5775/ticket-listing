@@ -68,7 +68,7 @@
                   { data: 'price', name: 'price' },
                   { data: 'quantity', name: 'quantity' },
                   { data: 'total', name: 'total' },
-                  { data: 'created_at', name: 'date' }
+                  { data: 'created_at', name: 'created_at' }
                  ]
         });
      });
