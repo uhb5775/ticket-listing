@@ -17,11 +17,11 @@ Auth::routes();
 
 Route::resource('listings', 'ListingsController');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('pdf_form', 'PdfController@pdfForm');
- Route::post('pdf_download', 'PdfController@pdfDownload');
+// Route::post('pdf_form', 'PdfController@pdfForm');
+//  Route::post('pdf_download', 'PdfController@pdfDownload');
 
 
-Route::get('/order', 'ListingsController@test');
+// Route::get('/order', 'ListingsController@test');
 Route::get('/create_order', 'OrdersController@create');
 
  Route::get('/orders', 'OrdersController@index'); ////1111

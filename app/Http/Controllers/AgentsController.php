@@ -60,13 +60,13 @@ class AgentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $agent = Agent::find($id);
+        $agents = Agent::all();
 
         return view('show_agent')
-        ->with('agent', $agent);
-
+        ->with('agents', $agents);
+//will show on - agent/show_agent
     }
 
     /**

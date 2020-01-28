@@ -57,12 +57,12 @@ class ListingsController extends Controller
 
         // return view('index')->with('listings', $listings);
     }
-    public function test()
-    {
-        $listings = Listing::all();
-        $orders = Order::find($id);
-        return view('show_order', compact('listings','orders'));
-    }
+    // public function test()
+    // {
+    //     $listings = Listing::all();
+    //     $orders = Order::find($id);
+    //     return view('show_order', compact('listings','orders'));
+    // }
     /**
      * Show the form for creating a new resource.
      *

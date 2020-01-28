@@ -7,9 +7,19 @@
 
                 <div class="card-body">
                     <div class="list-group">
+                        <div class="card-body">
+                        @if(count($agents))
+                        <div class="list-group">
+                        @foreach ($agents as $agent) 
                         <div class="list-group-item">
-                         Agent: {{ $agent->agent_name }}
-                        </div>      
+                       <a href="/agent/">{{ $agent->agent_name }}</a>
+                        </div>
+                        @endforeach
+                        </div>
+                        @else
+                        <p>No events found!</p>
+                        @endif
+                </div>     
                     </div>
                 </div>
             </div>
