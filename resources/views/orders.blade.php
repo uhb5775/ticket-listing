@@ -86,7 +86,7 @@
         },
            processing: true,
            serverSide: true,
-           pageLength: 20,
+           pageLength: 10,
            ajax: {
           url: "{{ url('orders-list') }}",
           type: 'GET',
