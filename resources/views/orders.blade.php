@@ -46,7 +46,7 @@
                </thead>
                <tfoot>
         <tr>
-            <th colspan="4" style="text-align:right">Total:</th>
+            <th colspan="5" style="text-align:right">Total:</th>
             <th></th>
         </tr>
     </tfoot>
@@ -67,20 +67,20 @@
                         i : 0;};
  //
             total = api
-                .column( 5 )
+                .column( 4 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
 //
             pageTotal = api
-                .column( 5, { page: 'current'} )
+                .column( 4, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
  //
-            $( api.column( 5 ).footer() ).html(
+            $( api.column( 4 ).footer() ).html(
                 '$'+pageTotal +' ( $'+ total +' total)'
             );
         },
@@ -111,10 +111,4 @@
      $('#laravel_datatable').DataTable().draw(true);
   });
   </script>
-   <tfoot>
-        <tr>
-            <th colspan="4" style="text-align:right">Total:</th>
-            <th></th>
-        </tr>
-    </tfoot>
 @endsection
