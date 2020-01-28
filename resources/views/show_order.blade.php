@@ -131,6 +131,7 @@
                             <td>
                                 BroadwayTix.<br>
                                 <b>Agent: {{ $order->ename }}</b><br>
+                                <b>Location: {{ $order->location }}</b><br>
                                 broadwaytix99@gmail.com<br>
                                 (212) 757 - 1720
                             </td>
