@@ -18,9 +18,6 @@
                     <th></th>
                         @if(count($listings))
                         <table class="table table-stripped">
-                        <!-- <tr>
-                        <th>Tickets</th>
-                        </tr> -->
                         @foreach($listings as $listing)
                         <tr>
                         <td>{{$listing->event}}</td>

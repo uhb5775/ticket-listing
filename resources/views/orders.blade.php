@@ -38,6 +38,7 @@
                   <tr>
                      <th>Agent</th>
                      <th>Event</th>
+                     <th>Location</th>
                      <th>Price</th>
                      <th>Qty</th>
                      <th>Total</th>
@@ -46,7 +47,7 @@
                </thead>
                <tfoot>
         <tr>
-            <th colspan="5" style="text-align:right">Total:</th>
+            <th colspan="6" style="text-align:right">Total:</th>
             <th></th>
         </tr>
     </tfoot>
@@ -67,7 +68,7 @@
                         i : 0;};
  //
             total = api
-                .column( 4 )
+                .column( 5 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -80,8 +81,8 @@
                     return intVal(a) + intVal(b);
                 }, 0 );
  //
-            $( api.column( 4 ).footer() ).html(
-                '$'+pageTotal +' ( $'+ total +' total)'
+            $( api.column( 5 ).footer() ).html(
+                'Qty:'+ pageTotal +', ( Total: $'+ total +' )'
             );
         },
            processing: true,
@@ -100,6 +101,7 @@
                     { data: 'event', name: 'event', render:function(data, type, row){
     return "<a href='/orders/"+ row.id +"'>" + row.event + "</a>"
 }},
+                  { data: 'location', name:'location'},
                   { data: 'price', name: 'price' },
                   { data: 'quantity', name: 'quantity' },
                   { data: 'total', name: 'total' },
@@ -112,4 +114,3 @@
   });
   </script>
 @endsection
-<!-- testttttttt2orders -->

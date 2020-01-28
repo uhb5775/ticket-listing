@@ -60,12 +60,12 @@ class LocationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $location = Location::find($id);
+        $locations = Location::all();
 
-        return view('show_location')
-        ->with('location', $location);
+        return view('show_locations')
+        ->with('locations', $locations);
 
     }
 
