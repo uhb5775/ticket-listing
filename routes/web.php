@@ -29,6 +29,8 @@ Route::get('/create_order', 'OrdersController@create');
 
 //  Route::get('/agent', 'AgentsController@index');
  Route::resource('agent', 'AgentsController');
+ Route::resource('location', 'LocationsController');
+
 
  Route::get('/orders-list', 'OrdersController@ordersList'); ////2222
 

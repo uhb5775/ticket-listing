@@ -65,6 +65,7 @@ class OrdersController extends Controller
     {
         $this->validate($request, [
             'ename' => 'nullable',
+            'location' => 'nullable',
             'event' => 'nullable',
             'info' => 'nullable',
             'price' => 'required',
@@ -76,6 +77,7 @@ class OrdersController extends Controller
         $order = new Order();
         $order->user_id = Auth::id();
         $order->ename = $request->input('ename');
+        $order->location = $request->input('location');
         $order->event = $request->input('event');
         $order->info = $request->input('info');
         $order->price = $request->input('price');

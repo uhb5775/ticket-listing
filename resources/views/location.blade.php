@@ -4,7 +4,7 @@
   <div class="row justify-content-center">
   <div class="col-md-8">
   <div class="card">
-  <div class="card-header">Create Agent<span class="float-right"><a href='/home' class="btn btn-secondary">Back</a></span></div>
+  <div class="card-header">Add location<span class="float-right"><a href='/home' class="btn btn-secondary">Back</a></span></div>
   <div class="card-body">
   
   @if(session('status'))
@@ -13,13 +13,12 @@
   </div>
   @endif
             
-<!-- <form method="post" action="/listings"> -->
-<form method="post" action="/agent">
+<form method="post" action="/location">
 
 @csrf
   <div class="form-group" >
-    <label for="agent_name">Agent</label>
-    <input type="text" class="form-control" name="agent_name" id="agent_name" placeholder="Name">
+    <label for="agent_name">Location</label>
+    <input type="text" class="form-control" name="location_name" id="location_name" placeholder="Name">
   </div>
   
   

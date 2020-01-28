@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Order;
 use App\Models\Agent;
+use App\Models\Location;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 use Redirect;
@@ -111,12 +112,14 @@ class ListingsController extends Controller
     {
         $listings = Listing::find($id);
         $agents = Agent::all();
+        $locations = Location::all();
         $orders = Order::all();
 
          return view('show')
          ->with('listings', $listings)
          ->with('orders', $orders)
-         ->with('agents', $agents);
+         ->with('agents', $agents)
+         ->with('locations', $locations);
 
     }
 

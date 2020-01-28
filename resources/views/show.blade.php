@@ -31,6 +31,17 @@
                             @endif   
                         </select>
                         <br>
+                        <label for="location">Choose location</label>
+                        <select class="form-control" name="location" id="location">
+                        @if($locations->count() > 0)
+                        @foreach($locations as $location)
+                        <option>{{$location->location_name}}</option>
+                        @endForeach
+                        @else
+                        No Record Found
+                            @endif   
+                        </select>
+                        <br>
                         <label for="info">Info:</label>
                         <input type="text" class="form-control" name="info" id="info" placeholder="Notes">
                         <br>
