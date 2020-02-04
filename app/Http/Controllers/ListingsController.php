@@ -22,47 +22,15 @@ class ListingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function pdfForm()
-    // {
-    //     return view('pdf_form');
-    // }
- 
-    // public function pdfDownload(Request $request){
- 
-    //    $this->validate($request, [
-    //         'event' => 'required',
-    //         'date' => 'nullable',
-    //         'price' => 'nullable',
-    //         'info' => 'nullable',
-    //     ]);
-      
-    //      $data = 
-    //      [
-    //         'event' => $request->event,
-    //         'date' => $request->date,
-    //         'price' => $request->price,
-    //         'info' => $request->info
-    //      ];
-    //    $pdf = PDF::loadView('pdf_download', $data);
-   
-    //    return $pdf->stream('tutsmake.pdf');
-    // }
-
     public function index()
     {
         $listings = Listing::all();
         $orders = Order::all();
         return view('index', compact('listings','orders'));
         // $listings = Listing::orderBy('created_at','desc')->get();
-
         // return view('index')->with('listings', $listings);
     }
-    // public function test()
-    // {
-    //     $listings = Listing::all();
-    //     $orders = Order::find($id);
-    //     return view('show_order', compact('listings','orders'));
-    // }
+ 
     /**
      * Show the form for creating a new resource.
      *
@@ -113,16 +81,14 @@ class ListingsController extends Controller
         $listings = Listing::find($id);
         $agents = Agent::all();
         $locations = Location::all();
-        $orders = Order::all();
+        // $orders = Order::all();
 
          return view('show')
          ->with('listings', $listings)
-         ->with('orders', $orders)
+        //  ->with('orders', $orders)
          ->with('agents', $agents)
          ->with('locations', $locations);
-
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -132,14 +98,11 @@ class ListingsController extends Controller
     public function edit($id)
     {
         $listing = Listing::find($id);
-        $agent = Agent::all();
-        $order = Order::all();
+        // $agent = Agent::all();
+    
         return view('edit')
-        ->with('listing', $listing)
-        ->with('order', $order)
-        ->with('agent', $agent);
+        ->with('listing', $listing);
     }
-
     /**
      * Update the specified resource in storage.
      *

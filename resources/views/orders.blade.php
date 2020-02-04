@@ -14,46 +14,46 @@
    <h2>Data</h2>
    <br>
    <div class="row">
-    <div class="form-group col-md-6">
-    <h5>Start Date <span class="text-danger"></span></h5>
-    <div class="controls">
-        <input type="date" name="start_date" id="start_date" class="form-control datepicker-autoclose" placeholder="Please select start date"> <div class="help-block"></div></div>
-    </div>
-    <div class="form-group col-md-6">
-    <h5>End Date <span class="text-danger"></span></h5>
-    <div class="controls">
-        <input type="date" name="end_date" id="end_date" class="form-control datepicker-autoclose" placeholder="Please select end date"> <div class="help-block"></div></div>
-    </div>
-    <div class="text-left" style="
-    margin-left: 15px;
-    ">
-    <button type="text" id="btnFiterSubmitSearch" class="btn btn-info">Submit</button>
-    </div>
-    </div>
-    <br>
-    <div class="table-responsive">
+                    <div class="form-group col-md-6">
+                    <h5>Start Date <span class="text-danger"></span></h5>
+                    <div class="controls">
+                        <input type="date" name="start_date" id="start_date" class="form-control datepicker-autoclose" placeholder="Please select start date"> <div class="help-block"></div></div>
+                    </div>
+                    <div class="form-group col-md-6">
+                    <h5>End Date <span class="text-danger"></span></h5>
+                    <div class="controls">
+                        <input type="date" name="end_date" id="end_date" class="form-control datepicker-autoclose" placeholder="Please select end date"> <div class="help-block"></div></div>
+                    </div>
+                    <div class="text-left" style="
+                    margin-left: 15px;
+                    ">
+                    <button type="text" id="btnFiterSubmitSearch" class="btn btn-info">Submit</button>
+                    </div>
+                    </div>
+                    <br>
+                    <div class="table-responsive">
 
-    <table class="table table-bordered" id="laravel_datatable">
-               <thead>
-                  <tr>
-                     <th>Agent</th>
-                     <th>Event</th>
-                     <th>Location</th>
-                     <th>Price</th>
-                     <th>Qty</th>
-                     <th>Total</th>
-                     <th>Date</th>
-                  </tr>
-               </thead>
-               <tfoot>
-        <tr>
-            <th colspan="6" style="text-align:right">Total:</th>
-            <th></th>
-        </tr>
-    </tfoot>
-            </table>
-         </div>
-         </div>
+<table class="table table-bordered" id="laravel_datatable">
+                        <thead>
+                            <tr>
+                                <th>Agent</th>
+                                <th>Event</th>
+                                <th>Location</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th colspan="6" style="text-align:right">Total:</th>
+                            <th></th>
+                        </tr>
+                        </tfoot>
+                        </table>
+                    </div>
+                    </div>
    <script>
    $(document).ready( function () {
     $('#laravel_datatable').DataTable({
