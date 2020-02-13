@@ -52,7 +52,7 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        return view('create_order');
+        // return view('create_order');
     }
 
     /**

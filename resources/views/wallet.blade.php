@@ -14,7 +14,6 @@
                         
                         <div class="form-group">
                         <div class="list-group-item">
-                       <!-- TOTAL PER DAY: {{$orders->sum('total')}} -->
                             
 
                         </div>     
@@ -24,14 +23,15 @@
                         <div class="form-group">
                         <div class="list-group-item">
                         <label for="info">Location:{{$locations->location_name}}</label><br>
-                        <input type="text" class="form-control" name="location" id="location" value="{{$locations->location_name}}">
-                        <label for="info">Input start cash:</label>
-                        <input type="number" class="form-control" name="start_cash" id="start_cash">
-                        <!-- value="{{$locations->start_cash}}" -->
-                        <!-- <label for="info">End cash:</label>
-                        <input type="number" class="form-control" name="end_cash" id="end_cash" value="{{$orders->sum('total')}}" readonly> -->
-                   
+                        <input type="hidden" class="form-control" name="location" id="location" value="{{$locations->location_name}}">
+                        <label for="info">Start cash:</label>
+                        <input type="number" class="form-control" name="start_cash" id="start_cash" value="{{$locations->start_cash}}">                 
+                        <label for="info">End cash:</label>
+                        <input type="number" class="form-control" name="end_cash" id="end_cash" value="{{$orders->sum('total')}}" readonly>
+                        <!-- <label for="info">Date:</label>
+                        <input type="date" class="form-control" name="date" id="date" value="{{date("Y-m-d")}}"> -->
                         
+                        </div>
                         <br>
                         <div>
                         <span class="float-left">                
@@ -48,25 +48,4 @@
             </div>
         </div>
     </div>
-    <script>
-    $('table tfoot td').each(function(index) {
-    var total = 0;
-    $('tbody tr').each(function() {
-        total += +$('td', this).eq(index).text(); //+ will convert string to number
-    });
-    $(this).text(total);
-})
-    </script>
 @endsection
-
-
-                        <!-- <table>
-                            <tbody>
-                            @foreach ($orders as $order) 
-                            <tr><td>{{ $order->price }}</td></tr>
-                            </tbody>
-                            @endforeach
-                            <tfoot>
-                                <tr><td></td></tr>
-                            </tfoot>
-                        </table> -->

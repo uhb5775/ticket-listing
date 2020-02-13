@@ -3,17 +3,19 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Locations list<span class="float-right"><a href='/location' class="btn btn-secondary">Go Back</a></div>
+                <div class="card-header">Wallet list<span class="float-right"><a href='/location' class="btn btn-secondary">Go Back</a></div>
 
                 <div class="card-body">
                     <div class="list-group">
                         <div class="card-body">
-                        @if(count($locations))
+                        @if(count($wallets))
                         <div class="list-group">
-                        @foreach ($locations as $location) 
+                        @foreach ($wallets as $wallet) 
                         <div class="list-group-item">
-                       <a href="/location/{{$location->id}}">{{ $location->location_name }}</a>
-                       <!-- <a href="/location/{{ $location->id }}/edit" class="btn btn-info float-right">Edit</a></td> -->
+                        Location:   {{ $wallet->location }} |  Cash:{{$wallet->end_cash}} |  Date:{{$wallet->created_at}}
+
+                       <!-- <a href="/wallet/{{$wallet->id}}">Start cash:{{ $wallet->start_cash }}</a> End cash:{{$wallet->end_cash}} -->
+                       
                         </div>
                         @endforeach
                         </div>
@@ -21,9 +23,5 @@
                         <p>No events found!</p>
                         @endif
                 </div>     
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection  
+               
+@endsection

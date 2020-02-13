@@ -25,7 +25,7 @@
                         <div class="list-group">
                         <div class="list-group-item">
                         <a href="/agent/" class="btn btn-success">Add agent</a>
-                        <a href="/location/" class="btn btn-success">Add location</a>
+                        <a href="/location/" class="btn btn-success">Locations</a>
                         <a href="/home/" class="btn btn-primary">Edit event</a>
                        <a href="/orders/" class="btn btn-secondary">Show orders</a>
                         </div>
