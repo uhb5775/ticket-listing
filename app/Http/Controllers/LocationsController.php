@@ -8,9 +8,12 @@ use App\Models\Order;
 use App\Models\Agent;
 use App\Models\Location;
 use App\Models\Wallet;
+use App\Models\Sales;
 use Illuminate\Support\Facades\Auth;
 use PDF;
+use Carbon\Carbon;
 use Redirect;
+use DB;
 
 class LocationsController extends Controller
 {
@@ -50,12 +53,12 @@ class LocationsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'location_name' => 'required',
+            'location_id' => 'nullable',
             'start_cash' => 'nullable',
             'end_cash' => 'nullable',
             ]);    
         $location = new Location();
-        $location->location_name = $request->input('location_name');
+        $location->location_id = $request->input('location_id');
         $location->start_cash = $request->input('start_cash');
         $location->end_cash = $request->input('end_cash');
         $location->save();
@@ -71,15 +74,21 @@ class LocationsController extends Controller
      */
     public function show($id)
     {
-        $locations = Location::find($id);
-        $orders = Order::all();
-        // $orders = Order::where('event', '=', 'Lion King')->whereRaw('Date(created_at) = CURDATE()')->get();
-        
-        // $orders = Order::where('location', '=', 'New York')->get();
+        $locations = Location::find($id)->orders()->whereDate('created_at', '=', Carbon::today()->toDateString());
+        $loc = Location::find($id);
+        // $orders = Order::all();
+        // $wallets = Wallet::all();
+        $wallets = Location::find($id)->locsales()->whereDate('created_at', '=', Carbon::today()->toDateString());
+        // ->whereRaw('Date(created_at) = CURDATE()')->get();
+        $sales = Sales::all();
+        // $sales = Sales::whereRaw('Date(created_at) = CURDATE()')->get();
 
         return view('location')
+        ->with('sales', $sales)
         ->with('locations', $locations)
-        ->with('orders', $orders);
+        ->with('wallets', $wallets)
+        ->with('loc', $loc);
+        // ->with('orders', $orders);
     }
     /**
      * Show the form for editing the specified resource.
@@ -90,11 +99,14 @@ class LocationsController extends Controller
     public function edit($id)
     {
         $orders = Order::all();
-        $orders = Order::where('event', '=', 'Lion King')->whereRaw('Date(created_at) = CURDATE()')->get();
-
         $locations = Location::find($id);
+        $loc = Location::find($id)->orders()->whereDate('created_at', '=', Carbon::today()->toDateString());
+
+        // $orders = Order::where('event', '=', 'Lion King')->whereRaw('Date(created_at) = CURDATE()')->get();
+
         
         return view('edit_location')
+        ->with('loc', $loc)
         ->with('locations', $locations)
         ->with('orders', $orders);
     }
@@ -109,15 +121,21 @@ class LocationsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'location_name' => 'required',
+            'location_id' => 'nullable',
             'start_cash' => 'nullable',
             'end_cash' => 'nullable',
+            'paid_in' => 'nullable',
+            'paid_out' => 'nullable',
+
         ]);
 
         $location = Location::find($id);
-        $location->location_name = $request->input('location_name');
+        $location->location_id = $request->input('location_id');
         $location->start_cash = $request->input('start_cash');
         $location->end_cash = $request->input('end_cash');
+        $location->paid_in = $request->input('paid_in');
+        $location->paid_out = $request->input('paid_out');
+
         $location->save();
         return redirect()->to('/location')->with('success', 'Updated successfully');
     }
@@ -132,58 +150,30 @@ class LocationsController extends Controller
     {
         //
     }
-    /////////////////////////////////////////////////Wallet_locations
-    public function chooseLocation($id)
-    {
-        $locations = Location::find($id);
-        $orders = Order::all();
-
-        if($location_name = NewYork ){
-            $locations = $locations->where('location', '=', 'New York')->whereRaw('Date(created_at) = CURDATE()')->get();
-        }
-        if($locations = NC){
-            $locations = $locations->where('location', '=', 'NC')->whereRaw('Date(created_at) = CURDATE()')->get();
-        }
-    }
 
     public function wallet($id)
     {
+        $orders = Order::all()->where('created_at', '=', Carbon::today()->toDateString());
         $locations = Location::find($id);
-        $wallets = Wallet::all();
-        $orders = Order::all();
-        $orders = Order::where('location', '=', 'Plovdiv')->whereRaw('Date(created_at) = CURDATE()')->get();
-        // $orders = Order::where('location', '=', 'New York')->get();
-
-        return view('wallet')
+        
+        return view('delocation')
         ->with('locations', $locations)
-        ->with('orders', $orders)
-        ->with('wallets', $wallets);
+        ->with('orders', $orders);
     }
-    public function wall2($id)
-    {
-        $locations = Location::find($id);
-        $wallets = Wallet::all();
-        $orders = Order::all();
-        $orders = Order::where('location', '=', 'New York')->whereRaw('Date(created_at) = CURDATE()')->get();
-
-        // $orders = Order::where('location', '=', 'New York')->get();
-
-        return view('wallet')
-        ->with('locations', $locations)
-        ->with('orders', $orders)
-        ->with('wallets', $wallets);
-    }
+    
     public function record(Request $request)
     {
         $this->validate($request, [
-            'location' => 'nullable',
+            'location_id' => 'nullable',
             'start_cash' => 'nullable',
-            'end_cash' => 'nullable',
+            'paid_in' => 'nullable',
+            'paid_out' => 'nullable',
             ]);    
         $wallet = new Wallet();
-        $wallet->location = $request->input('location');
+        $wallet->location_id = $request->input('location_id');
         $wallet->start_cash = $request->input('start_cash');
-        $wallet->end_cash = $request->input('end_cash');
+        $wallet->paid_in = $request->input('paid_in');
+        $wallet->paid_out = $request->input('paid_out');
         $wallet->save();
 
         return redirect()->to('/index_wallet')->with('success', 'Record added successfully.');
@@ -192,9 +182,62 @@ class LocationsController extends Controller
         public function indexWallet()
         {
             $wallets = Wallet::all();
+            $sales = Sales::all();
             $locations = Location::all();
-            // $locations = Location::where('location_name', '=', 'NC')->whereRaw('Date(created_at) = CURDATE()')->get();
      
-            return view('index_wallet', compact('wallets'));
+            return view('index_wallet', compact('wallets', 'sales'));
         }
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        public function drawer()
+    {
+        $agents = Agent::all();
+        $orders =Order::all();
+        
+        $sales = Sales::all();
+        $wallets = Wallet::all();
+        $locations = Location::all();
+       
+        return view('drawer')
+        ->with('agents', $agents)
+        ->with('orders', $orders)
+        ->with('locations', $locations)
+        ->with('sales', $sales)
+        ->with('wallets', $wallets);
+    }
+    public function post_drawer(Request $request)
+    {
+        $this->validate($request, [
+            'location_id' => 'nullable',
+            'start_cash' => 'nullable',
+            'amount' => 'nullable',
+            'paid_in' => 'nullable',
+            'paid_out' => 'nullable',
+            'paid_total' => 'nullable',
+
+            // 'date' => 'nullable',
+            ]);    
+        $wallet = new Sales();
+        // $wallet->date = $request->input('date');
+        $wallet->location_id = $request->input('location_id');
+        $wallet->start_cash = $request->input('start_cash');
+        $wallet->amount = $request->input('amount');
+        $wallet->paid_in = $request->input('paid_in');
+        $wallet->paid_out = $request->input('paid_out');
+        $wallet->paid_total = $request->input('paid_total');
+
+        $wallet->save();
+        return redirect()->to('/index_wallet')->with('success', 'Paid In/Out successfully.');
+    }
 }

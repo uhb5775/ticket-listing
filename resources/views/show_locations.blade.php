@@ -12,7 +12,8 @@
                         <div class="list-group">
                         @foreach ($locations as $location) 
                         <div class="list-group-item">
-                       <a href="/location/{{$location->id}}">{{ $location->location_name }}</a>
+                       <!-- <a href="/wallet/{{$location->id}}">{{ $location->location_id }}</a> -->
+                       <a href="/location/{{$location->id}}">{{ $location->location_id }}</a>
                        <!-- <a href="/location/{{ $location->id }}/edit" class="btn btn-info float-right">Edit</a></td> -->
                         </div>
                         @endforeach

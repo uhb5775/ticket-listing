@@ -18,7 +18,7 @@
 @csrf
   <div class="form-group" >
     <label for="agent_name">Location</label>
-    <input type="text" class="form-control" name="location_name" id="location_name" placeholder="Name">
+    <input type="text" class="form-control" name="location_id" id="location_id" placeholder="Name">
   </div>
   
   

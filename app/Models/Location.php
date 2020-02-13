@@ -6,10 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-public function user(){
-        return $this->belongsTo('App\User');
+// public function user(){
+//         return $this->belongsTo('App\User');
+// }
+// public function location(){
+//     return $this->belongsToMany('App\Models\Listing');
+// }
+public function orders()
+{
+    return $this->hasMany('App\Models\Order', 'location', 'location_id');
 }
-public function location(){
-    return $this->belongsToMany('App\Models\Listing');
+///!test///////////////////////////////////////
+public function locsales()
+{
+    return $this->hasMany('App\Models\Wallet', 'location_id', 'location_id');      
 }
 }
