@@ -71,7 +71,7 @@ class OrdersController extends Controller
             'price' => 'required',
             'quantity' => 'required',
             'total' => 'required',
-            'created_at' => 'nullable',
+            // 'created_at' => 'nullable',
         
         ]);    
         $order = new Order();
@@ -83,7 +83,7 @@ class OrdersController extends Controller
         $order->price = $request->input('price');
         $order->quantity = $request->input('quantity');
         $order->total = $request->input('total');
-        $order->date = $request->input('created_at');
+        // $order->date = $request->input('created_at');
         $order->save();
 
         $OrdersNewID = $order->id;
@@ -98,11 +98,11 @@ class OrdersController extends Controller
     public function show($id)
     {
         $order = Order::find($id);
-        $listing = Listing::find($id);
+        // $listing = Listing::find($id);
 
         return view('show_order')
-        ->with('order', $order)
-        ->with('listing', $listing);
+        ->with('order', $order);
+        // ->with('listing', $listing);
 
     }
 

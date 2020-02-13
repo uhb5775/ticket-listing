@@ -12,23 +12,26 @@
   {{session('status')}}
   </div>
   @endif
-            
+  {{$locations->location_id}}
 <form method="post" action="/location/{{ $locations->id }}">
 @csrf
 @method('PUT')
 <div class="form-group" >
                         <div class="list-group-item">
-                        <input type="text" class="form-control" name="location_name" id="location_name" value="{{$locations->location_name}}">
+                        <input type="hidden" class="form-control" name="location_id" id="location_id" value="{{$locations->location_id}}" readonly>
+                
                         <label for="info">Start cash:</label>
-                        <input type="number" class="form-control" name="start_cash" id="start_cash">  
-                        <!-- value="{{$locations->start_cash}}                -->
-                        <!-- <label for="info">Income:</label>
-                        <input type="number" class="form-control" name="income" id="income" value="{{$orders->sum('total')}}">
-                        <label for="info">End cash:</label>
-                        <input type="number" class="form-control" name="end_cash" id="end_cash"> -->
+                        <input type="number" class="form-control" name="start_cash" id="start_cash" value="{{$locations->start_cash}}" readonly>  
+                        <label for="info">Amount:</label>
+                        <input type="number" class="form-control" name="end_cash" id="end_cash" value="{{$loc->sum('total')}}" readonly>                 
+                        <label for="in">Paid in:</label>
+                        <input type="number" class="form-control" name="paid_in" id="paid_in" value="{{$locations->paid_in}}">
+                        <label for="in">Paid out:</label>
+                        <input type="number" class="form-control" name="paid_out" id="paid_out" value="{{$locations->paid_out}}">
+                        
                         </div></div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-
+                        <!-- value="{{$orders->sum('total')}}" -->
 </form>
                     </div>
                    </div>

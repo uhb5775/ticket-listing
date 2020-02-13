@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->string('ename');
+            $table->string('location');
             $table->string('event');
             $table->string('info');
             $table->string('price');

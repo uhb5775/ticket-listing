@@ -7,33 +7,40 @@
             <div class="card">
                 <div class="card-header">Cashier<span class="float-right"><a href='/location' class="btn btn-secondary">Back</a>
                 </div>                                  
-                <div class="card-body">
+                <div class="card-body" onmouseover="add_number()">
                     <div class="list-group">
                         <div class="list-group-item">
                         <div class="card-body">
                         
                         <div class="form-group">
                         <div class="list-group-item">
-                       <!-- TOTAL PER DAY: {{$orders->sum('total')}} -->
-                            
+                        <label for="location">Location: {{$loc->location_id}}</label>
 
                         </div>     
-                        <form method="post" action="/make">
+                        <form method="post" action="/post_drawer">
                         @csrf           
                         <br>
-                        <div class="form-group">
-                        <div class="list-group-item">
-                        <label for="info">Location:{{$locations->location_name}}</label><br>
-                        <input type="text" class="form-control" name="location" id="location" value="{{$locations->location_name}}">
-                        <label for="info">Input start cash:</label>
-                        <input type="number" class="form-control" name="start_cash" id="start_cash">
-                        <!-- value="{{$locations->start_cash}}" -->
-                        <!-- <label for="info">End cash:</label>
-                        <input type="number" class="form-control" name="end_cash" id="end_cash" value="{{$orders->sum('total')}}" readonly> -->
-                   
-                        
                         <br>
+                        <label for="info">Start cash</label>
+                        <input type="number" onmouseover="add_number()" class="form-control" name="start_cash" id="start_cash" value="{{$wallets->sum('start_cash')}}" readonly>
+                        
+                        <label for="info">Amount of orders(today):</label>
+                        <input type="number" onmouseover="add_number()" class="form-control" name="amount" id="amount" value="{{$locations->sum('total')}}" readonly>
+                        <br>
+                       
+                        <br>
+                        <br>
+                       
+                        
+                        <input type="hidden" onmouseover="add_number()" class="form-control" name="location_id" id="location_id" value="{{$loc->location_id}}">
+                        <label for="info">Paid in:</label>
+                        <input type="number" onmouseover="add_number()" class="form-control" name="paid_in" id="paid_in" value="{{$wallets->sum('paid_in')}}" readonly>
+                        <label for="info">Paid Out:</label>
+                        <input type="number" onmouseover="add_number()" class="form-control" name="paid_out" id="paid_out" value="{{$wallets->sum('paid_out')}}" readonly>
                         <div>
+                        <label for="info">Total:</label>
+                        <input type="number" onmouseover="add_number()" class="form-control" name="paid_total" id="paid_total" readonly>
+                        
                         <span class="float-left">                
                         </span>
                         </div>
@@ -48,25 +55,20 @@
             </div>
         </div>
     </div>
-    <script>
-    $('table tfoot td').each(function(index) {
-    var total = 0;
-    $('tbody tr').each(function() {
-        total += +$('td', this).eq(index).text(); //+ will convert string to number
-    });
-    $(this).text(total);
-})
-    </script>
+    <script type="text/javascript">
+ function add_number() {
+
+var first_number = parseInt(document.getElementById("start_cash").value);
+var second_number = parseInt(document.getElementById("paid_in").value);
+var third_number = parseInt(document.getElementById("paid_out").value);
+var fourth_number = parseInt(document.getElementById("amount").value);
+
+
+var result = first_number + second_number - third_number + fourth_number;
+
+document.getElementById("paid_total").value = result;
+}
+
+</script>
 @endsection
 
-
-                        <!-- <table>
-                            <tbody>
-                            @foreach ($orders as $order) 
-                            <tr><td>{{ $order->price }}</td></tr>
-                            </tbody>
-                            @endforeach
-                            <tfoot>
-                                <tr><td></td></tr>
-                            </tfoot>
-                        </table> -->

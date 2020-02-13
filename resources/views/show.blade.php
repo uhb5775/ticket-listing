@@ -35,7 +35,7 @@
                         <select class="form-control" name="location" id="location">
                         @if($locations->count() > 0)
                         @foreach($locations as $location)
-                        <option>{{$location->location_name}}</option>
+                        <option>{{$location->location_id}}</option>
                         @endForeach
                         @else
                         No Record Found
