@@ -52,7 +52,7 @@ class AgentsController extends Controller
         $agent->agent_name = $request->input('agent_name');
         $agent->save();
 
-        return redirect()->to('/home')->with('success', 'Agent created successfully.');
+        return redirect()->to('/agent/show_agent')->with('success', 'Agent created successfully.');
         }
     /**
      * Display the specified resource.
@@ -100,6 +100,9 @@ class AgentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $agents = Agent::find($id);
+        $agents->delete();
+
+        return redirect()->to('/')->with('success', 'Agent deleted successfully.');
     }
 }

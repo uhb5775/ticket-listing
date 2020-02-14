@@ -13,6 +13,11 @@
                         @foreach ($agents as $agent) 
                         <div class="list-group-item">
                        <a href="/agent/">{{ $agent->agent_name }}</a>
+                       <form class="float-right ml-2" action="/agent/{{ $agent->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" name="button" class="btn btn-danger">Delete</button>
+                        </form>
                         </div>
                         @endforeach
                         </div>

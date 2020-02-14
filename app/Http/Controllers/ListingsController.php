@@ -15,7 +15,9 @@ class ListingsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index','show']]);
+        $this->middleware('auth');
+        // $this->middleware('auth', ['except' => ['index','show']]);
+
     }
     /**
      * Display a listing of the resource.
@@ -142,6 +144,6 @@ class ListingsController extends Controller
         $listing = Listing::find($id);
         $listing->delete();
 
-        return redirect()->to('/home')->with('success', 'Listing created successfully.');
+        return redirect()->to('/home')->with('success', 'Listing deleted successfully.');
     }
 }
