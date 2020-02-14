@@ -14,6 +14,11 @@
                         <div class="list-group-item">
                        <!-- <a href="/wallet/{{$location->id}}">{{ $location->location_id }}</a> -->
                        <a href="/location/{{$location->id}}">{{ $location->location_id }}</a>
+                       <form class="float-right ml-2" action="/location/{{ $location->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" name="button" class="btn btn-danger">Delete</button>
+                        </form>
                        <!-- <a href="/location/{{ $location->id }}/edit" class="btn btn-info float-right">Edit</a></td> -->
                         </div>
                         @endforeach

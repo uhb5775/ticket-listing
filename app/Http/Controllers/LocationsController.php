@@ -148,7 +148,10 @@ class LocationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $location = Location::find($id);
+        $location->delete();
+
+        return redirect()->to('/location')->with('success', 'Location deleted successfully.');
     }
 
     public function wallet($id)
