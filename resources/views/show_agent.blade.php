@@ -3,7 +3,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Show agents<span class="float-right"><a href='/orders' class="btn btn-secondary">Go Back</a></div>
+                <div class="card-header">Show agents<span class="float-right">
+                <a href='/agent/create/' class="btn btn-primary">Add agent</a>
+                <a href='/' class="btn btn-secondary">Back</a>
+                </div>
 
                 <div class="card-body">
                     <div class="list-group">
