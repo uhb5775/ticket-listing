@@ -6,7 +6,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-            <div class="card-header">Events list<span class="float-right"><a href='/listings/create' class="btn btn-secondary">Add event</a></span></div>
+            <div class="card-header">Events list<span class="float-right">
+            <a href="/home/" class="btn btn-secondary">Edit events</a>
+            </div>
 
                 <div class="card-body">
                         @if(count($listings))
@@ -24,11 +26,11 @@
                 <div class="card-body">
                         <div class="list-group">
                         <div class="list-group-item">
-                        <a href="/agent/" class="btn btn-success">Add agent</a>
+                        <a href="/agent/show_agent/" class="btn btn-success">Agents</a>
                         <a href="/location/" class="btn btn-success">Locations</a>
-                        <a href="/drawer/" class="btn btn-warning">Pay In/Out</a>
-                        <a href="/home/" class="btn btn-primary">Edit event</a>
-                       <a href="/orders/" class="btn btn-secondary">Show orders</a>
+                       <a href="/orders/" class="btn btn-success">Orders</a>
+                       <a href="/drawer/" class="btn btn-primary">Pay In/Out</a>
+
                         </div>
                         </div>
                 </div>

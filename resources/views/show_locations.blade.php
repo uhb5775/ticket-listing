@@ -3,7 +3,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Locations list<span class="float-right"><a href='/location' class="btn btn-secondary">Go Back</a></div>
+                <div class="card-header">Locations list<span class="float-right">
+                <a href='/location/create/' class="btn btn-primary">Add location</a>
+                <a href='/' class="btn btn-secondary">Back</a>
+                </div>
 
                 <div class="card-body">
                     <div class="list-group">
