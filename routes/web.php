@@ -27,13 +27,8 @@ Route::get('/create_order', 'OrdersController@create');
 
  Route::resource('orders', 'OrdersController');
 
-//  Route::get('/agent', 'AgentsController@index');
- Route::resource('agent', 'AgentsController');
+Route::resource('agent', 'AgentsController');
 Route::resource('location', 'LocationsController');
-// Route::get('location', 'LocationsController@index');
-// Route::get('location/{id}', 'LocationsController@show');
-// Route::get('location/{id}/edit', 'LocationsController@edit');
-
 
  //wallet+sales
  Route::get('/wallet/{id}', 'LocationsController@wallet');
@@ -41,7 +36,6 @@ Route::resource('location', 'LocationsController');
  Route::post('/make', 'LocationsController@record');
  Route::get('/drawer', 'LocationsController@drawer');
  Route::post('/post_drawer', 'LocationsController@post_drawer');
-
 
 
 
