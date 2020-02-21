@@ -39,6 +39,8 @@
                         <input type="number" onKeyUp="add_number();" class="form-control" name="paid_in" id="paid_in">
                         <label for="info">Paid out:</label>
                         <input type="number" onKeyUp="add_number();" class="form-control" name="paid_out" id="paid_out">
+                        <label for="info">Info:</label>
+                        <input type="text" class="form-control" name="info" id="info">
                         
                         </div>
                         <br>

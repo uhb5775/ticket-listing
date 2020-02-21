@@ -23,15 +23,11 @@
                         <br>
                         <label for="info">Start cash</label>
                         <input type="number" onmouseover="add_number()" class="form-control" name="start_cash" id="start_cash" value="{{$wallets->sum('start_cash')}}" readonly>
-                        
                         <label for="info">Amount of orders(today):</label>
                         <input type="number" onmouseover="add_number()" class="form-control" name="amount" id="amount" value="{{$locations->sum('total')}}" readonly>
+                        <br> 
                         <br>
-                       
                         <br>
-                        <br>
-                       
-                        
                         <input type="hidden" onmouseover="add_number()" class="form-control" name="location_id" id="location_id" value="{{$loc->location_id}}">
                         <label for="info">Paid in:</label>
                         <input type="number" onmouseover="add_number()" class="form-control" name="paid_in" id="paid_in" value="{{$wallets->sum('paid_in')}}" readonly>

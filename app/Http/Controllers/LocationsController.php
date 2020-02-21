@@ -53,14 +53,11 @@ class LocationsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'location_id' => 'nullable',
-            'start_cash' => 'nullable',
-            'end_cash' => 'nullable',
+            'location_id' => 'required',
+
             ]);    
         $location = new Location();
         $location->location_id = $request->input('location_id');
-        $location->start_cash = $request->input('start_cash');
-        $location->end_cash = $request->input('end_cash');
         $location->save();
 
         return redirect()->to('/location')->with('success', 'Location added successfully.');
@@ -74,21 +71,14 @@ class LocationsController extends Controller
      */
     public function show($id)
     {
-        $locations = Location::find($id)->orders()->whereDate('created_at', '=', Carbon::today()->toDateString());
-        $loc = Location::find($id);
-        // $orders = Order::all();
-        // $wallets = Wallet::all();
-        $wallets = Location::find($id)->locsales()->whereDate('created_at', '=', Carbon::today()->toDateString());
-        // ->whereRaw('Date(created_at) = CURDATE()')->get();
-        $sales = Sales::all();
-        // $sales = Sales::whereRaw('Date(created_at) = CURDATE()')->get();
+        $locations = Location::find($id)->orders()->whereDate('created_at', '=', Carbon::today()->toDateString()); //show orders
+        $wallets = Location::find($id)->locsales()->whereDate('created_at', '=', Carbon::today()->toDateString()); //show payments
+        $loc = Location::find($id); //to show location name
 
         return view('location')
-        ->with('sales', $sales)
         ->with('locations', $locations)
         ->with('wallets', $wallets)
         ->with('loc', $loc);
-        // ->with('orders', $orders);
     }
     /**
      * Show the form for editing the specified resource.
@@ -154,15 +144,15 @@ class LocationsController extends Controller
         return redirect()->to('/location')->with('success', 'Location deleted successfully.');
     }
 
-    public function wallet($id)
-    {
-        $orders = Order::all()->where('created_at', '=', Carbon::today()->toDateString());
-        $locations = Location::find($id);
+    // public function wallet($id)
+    // {
+    //     $orders = Order::all()->where('created_at', '=', Carbon::today()->toDateString());
+    //     $locations = Location::find($id);
         
-        return view('delocation')
-        ->with('locations', $locations)
-        ->with('orders', $orders);
-    }
+    //     return view('delocation')
+    //     ->with('locations', $locations)
+    //     ->with('orders', $orders);
+    // }
     
     public function record(Request $request)
     {
@@ -171,12 +161,15 @@ class LocationsController extends Controller
             'start_cash' => 'nullable',
             'paid_in' => 'nullable',
             'paid_out' => 'nullable',
+            'info' => 'nullable',
+
             ]);    
         $wallet = new Wallet();
         $wallet->location_id = $request->input('location_id');
         $wallet->start_cash = $request->input('start_cash');
         $wallet->paid_in = $request->input('paid_in');
         $wallet->paid_out = $request->input('paid_out');
+        $wallet->info = $request->input('info');
         $wallet->save();
 
         return redirect()->to('/index_wallet')->with('success', 'Record added successfully.');
@@ -190,35 +183,16 @@ class LocationsController extends Controller
      
             return view('index_wallet', compact('wallets', 'sales'));
         }
-
-
-
-
-
-
-
-
-
-
-
-
-        
+         
+        // Pay IN/OUT page
         public function drawer()
     {
-        $agents = Agent::all();
-        $orders =Order::all();
-        
-        $sales = Sales::all();
-        $wallets = Wallet::all();
         $locations = Location::all();
        
         return view('drawer')
-        ->with('agents', $agents)
-        ->with('orders', $orders)
-        ->with('locations', $locations)
-        ->with('sales', $sales)
-        ->with('wallets', $wallets);
+        ->with('locations', $locations);
     }
+    // Page with table history of maked orders and pays
     public function post_drawer(Request $request)
     {
         $this->validate($request, [
