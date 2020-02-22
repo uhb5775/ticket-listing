@@ -71,8 +71,13 @@ class LocationsController extends Controller
      */
     public function show($id)
     {
-        $locations = Location::find($id)->orders()->whereDate('created_at', '=', Carbon::today()->toDateString()); //show orders
-        $wallets = Location::find($id)->locsales()->whereDate('created_at', '=', Carbon::today()->toDateString()); //show payments
+        $locations = Location::find($id)->orders()
+        ->where('added_to_drawer', 1)
+        ->whereDate('created_at', '=', Carbon::today()->toDateString()); //show orders
+        
+        $wallets = Location::find($id)->locsales()
+        ->where('added_to_drawer', 1)
+        ->whereDate('created_at', '=', Carbon::today()->toDateString()); //show payments
         $loc = Location::find($id); //to show location name
 
         return view('location')
@@ -144,16 +149,7 @@ class LocationsController extends Controller
         return redirect()->to('/location')->with('success', 'Location deleted successfully.');
     }
 
-    // public function wallet($id)
-    // {
-    //     $orders = Order::all()->where('created_at', '=', Carbon::today()->toDateString());
-    //     $locations = Location::find($id);
-        
-    //     return view('delocation')
-    //     ->with('locations', $locations)
-    //     ->with('orders', $orders);
-    // }
-    
+    //Validation for In/Out payment
     public function record(Request $request)
     {
         $this->validate($request, [
@@ -175,16 +171,8 @@ class LocationsController extends Controller
         return redirect()->to('/index_wallet')->with('success', 'Record added successfully.');
         //->to('/location')
         }
-        public function indexWallet()
-        {
-            $wallets = Wallet::all();
-            $sales = Sales::all();
-            $locations = Location::all();
-     
-            return view('index_wallet', compact('wallets', 'sales'));
-        }
          
-        // Pay IN/OUT page
+        // Make Pay IN/OUT
         public function drawer()
     {
         $locations = Location::all();
@@ -192,6 +180,14 @@ class LocationsController extends Controller
         return view('drawer')
         ->with('locations', $locations);
     }
+
+//show maked orders and payments
+public function indexWallet()
+{
+    $wallets = Wallet::all();
+    $sales = Sales::all();
+    return view('index_wallet', compact('wallets', 'sales'));
+}
     // Page with table history of maked orders and pays
     public function post_drawer(Request $request)
     {
@@ -213,8 +209,9 @@ class LocationsController extends Controller
         $wallet->paid_in = $request->input('paid_in');
         $wallet->paid_out = $request->input('paid_out');
         $wallet->paid_total = $request->input('paid_total');
-
+        $affected = DB::table('orders')->update(array('added_to_drawer' => 0));
+        $affected = DB::table('wallets')->update(array('added_to_drawer' => 0));
         $wallet->save();
-        return redirect()->to('/index_wallet')->with('success', 'Paid In/Out successfully.');
+        return redirect()->to('/index_wallet')->with('success', 'Cashier closed successfully.');
     }
 }

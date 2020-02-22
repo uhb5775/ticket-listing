@@ -43,7 +43,7 @@
                         </div>  
                            
                         <table id="myDIV" style="display:none;" class="table table-striped table-hover" border="1">
-                        {{$sale->paid_total - $sale->paid_in}}
+                       
                 <thead>
                     <tr>
                         <th>Location</th>
