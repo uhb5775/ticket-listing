@@ -36,12 +36,3 @@ Route::resource('location', 'LocationsController');
  Route::post('/make', 'LocationsController@record');
  Route::get('/drawer', 'LocationsController@drawer');
  Route::post('/post_drawer', 'LocationsController@post_drawer');
-
-
-
-
-
-
-
-
-
