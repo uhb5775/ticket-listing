@@ -77,7 +77,8 @@ class LocationsController extends Controller
         
         $wallets = Location::find($id)->locsales()
         ->where('added_to_drawer', 1)
-        ->whereDate('created_at', '=', Carbon::today()->toDateString()); //show payments
+        ->whereDate('created_at', '=', Carbon::today()->toDateString())
+        ->get(); //show payments
         $loc = Location::find($id); //to show location name
 
         return view('location')
@@ -184,8 +185,10 @@ class LocationsController extends Controller
 //show maked orders and payments
 public function indexWallet()
 {
-    $wallets = Wallet::all();
-    $sales = Sales::all();
+    // $wallets = Wallet::all();
+    // $sales = Sales::all();
+    $sales = Sales::whereRaw('Date(created_at) = CURDATE()')->get();
+    $wallets = Wallet::whereRaw('Date(created_at) = CURDATE()')->get();
     return view('index_wallet', compact('wallets', 'sales'));
 }
     // Page with table history of maked orders and pays

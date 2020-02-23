@@ -14,29 +14,24 @@
                     <tr>
                         <th>Location</th>
                         <th>Amount</th>
-                        <th>Paid in</th>
-                        <th>Paid out</th>
+                        <th>Paid In/Out</th>
                         <th>Total</th>
-                        <th>Created</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                        @if(count($sales))
                         @foreach ($sales as $sale)
                         <tr> 
                         <td>{{ $sale->location_id }}</td>
                         <td>{{$sale->amount}}</td>
                         <td>{{$sale->paid_in}}</td>
-                        <td>{{$sale->paid_out}}</td>
                         <td>{{$sale->paid_total}}</td>
                         <td>{{$sale->created_at}}</td>
                         </tr>
                         </div>
                         @endforeach
                         </div>
-                        @else
-                        <p>No events found!</p>
-                        @endif
+                       
                         </div>
                         </div>  
                         </div>
