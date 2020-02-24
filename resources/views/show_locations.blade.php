@@ -16,7 +16,7 @@
                         @foreach ($locations as $location) 
                         <div class="list-group-item">
                        <!-- <a href="/wallet/{{$location->id}}">{{ $location->location_id }}</a> -->
-                       <a href="/location/{{$location->id}}">{{ $location->location_id }}</a>
+                       <a href="/location/{{$location->id}}/up">{{ $location->location_id }}</a>
                        <form class="float-right ml-2" action="/location/{{ $location->id }}" method="post">
                         @csrf
                         @method('DELETE')
