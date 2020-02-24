@@ -80,11 +80,31 @@ class LocationsController extends Controller
         ->whereDate('created_at', '=', Carbon::today()->toDateString())
         ->get(); //show payments
         $loc = Location::find($id); //to show location name
-
+        //reset drawer counter
+        $resetOrders = Location::find($id)->orders()->update(array('added_to_drawer' => 0));
+        $resetPayments = Location::find($id)->locsales()->update(array('added_to_drawer' => 0));
         return view('location')
         ->with('locations', $locations)
         ->with('wallets', $wallets)
         ->with('loc', $loc);
+    }
+    public function wallet($id)
+    {
+        $locations = Location::find($id)->orders()
+        ->where('added_to_drawer', 1)
+        ->whereDate('created_at', '=', Carbon::today()->toDateString()); //show orders
+        
+        $wallets = Location::find($id)->locsales()
+        ->where('added_to_drawer', 1)
+        ->whereDate('created_at', '=', Carbon::today()->toDateString())
+        ->get(); //show payments
+        $loc = Location::find($id); //to show location name
+
+        return view('edit_location')
+        ->with('locations', $locations)
+        ->with('wallets', $wallets)
+        ->with('loc', $loc);
+
     }
     /**
      * Show the form for editing the specified resource.
@@ -92,20 +112,20 @@ class LocationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $orders = Order::all();
-        $locations = Location::find($id);
-        $loc = Location::find($id)->orders()->whereDate('created_at', '=', Carbon::today()->toDateString());
+    // public function edit($id)
+    // {
+    //     $orders = Order::all();
+    //     $locations = Location::find($id);
+    //     $loc = Location::find($id)->orders()->whereDate('created_at', '=', Carbon::today()->toDateString());
 
-        // $orders = Order::where('event', '=', 'Lion King')->whereRaw('Date(created_at) = CURDATE()')->get();
+    //     $orders = Order::where('event', '=', 'Lion King')->whereRaw('Date(created_at) = CURDATE()')->get();
 
         
-        return view('edit_location')
-        ->with('loc', $loc)
-        ->with('locations', $locations)
-        ->with('orders', $orders);
-    }
+    //     return view('edit_location')
+    //     ->with('loc', $loc)
+    //     ->with('locations', $locations)
+    //     ->with('orders', $orders);
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -114,27 +134,27 @@ class LocationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $this->validate($request, [
-            'location_id' => 'nullable',
-            'start_cash' => 'nullable',
-            'end_cash' => 'nullable',
-            'paid_in' => 'nullable',
-            'paid_out' => 'nullable',
+    // public function update(Request $request, $id)
+    // {
+    //     $this->validate($request, [
+    //         'location_id' => 'nullable',
+    //         'start_cash' => 'nullable',
+    //         'end_cash' => 'nullable',
+    //         'paid_in' => 'nullable',
+    //         'paid_out' => 'nullable',
 
-        ]);
+    //     ]);
 
-        $location = Location::find($id);
-        $location->location_id = $request->input('location_id');
-        $location->start_cash = $request->input('start_cash');
-        $location->end_cash = $request->input('end_cash');
-        $location->paid_in = $request->input('paid_in');
-        $location->paid_out = $request->input('paid_out');
+    //     $location = Location::find($id);
+    //     $location->location_id = $request->input('location_id');
+    //     $location->start_cash = $request->input('start_cash');
+    //     $location->end_cash = $request->input('end_cash');
+    //     $location->paid_in = $request->input('paid_in');
+    //     $location->paid_out = $request->input('paid_out');
 
-        $location->save();
-        return redirect()->to('/location')->with('success', 'Updated successfully');
-    }
+    //     $location->save();
+    //     return redirect()->to('/location')->with('success', 'Updated successfully');
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -169,7 +189,7 @@ class LocationsController extends Controller
         $wallet->info = $request->input('info');
         $wallet->save();
 
-        return redirect()->to('/index_wallet')->with('success', 'Record added successfully.');
+        return redirect()->to('/index_wallet')->with('success', 'Paid In/Out maked successfully.');
         //->to('/location')
         }
          
@@ -215,6 +235,6 @@ public function indexWallet()
         $affected = DB::table('orders')->update(array('added_to_drawer' => 0));
         $affected = DB::table('wallets')->update(array('added_to_drawer' => 0));
         $wallet->save();
-        return redirect()->to('/index_wallet')->with('success', 'Cashier closed successfully.');
+        return redirect()->to('/index_wallet')->with('success', 'Drawer closed successfully.');
     }
 }

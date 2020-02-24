@@ -10,7 +10,7 @@
                 <a href='/location' class="btn btn-secondary">Back</a>
                 </div>
                 </div>                                  
-                <div class="card-body" onmouseover="add_number()">
+                <div class="card-body">
                     <div class="list-group">
                         <div class="list-group-item">
                         <div class="card-body">
@@ -18,23 +18,24 @@
                         <div class="form-group">
                         <div class="list-group-item">
                         <label for="location">Location: {{$loc->location_id}}</label>
-
                         </div>     
                         <form method="post" action="/post_drawer">
                         @csrf           
                         <br>
+                        <input type="hidden" name="location_id" id="location_id" value="{{$loc->location_id}}">
+
                         <label for="info">Starting cash</label>
-                        <input type="number" onmouseover="add_number()" class="form-control" name="start_cash" id="start_cash" value="{{$wallets->sum('start_cash')}}" readonly>
+                        <input type="number" class="form-control" name="start_cash" id="start_cash" value="{{$wallets->sum('start_cash')}}" readonly>
                        <br>
                         <label for="info">Orders:</label>
-                        <input type="number" onmouseover="add_number()" class="form-control" name="amount" id="amount" value="{{$locations->sum('total')}}" readonly>
+                        <input type="number" class="form-control" name="amount" id="amount" value="{{$locations->sum('total')}}" readonly>
                         <br>
-                        <input type="hidden" onmouseover="add_number()" class="form-control" name="location_id" id="location_id" value="{{$loc->location_id}}">
                         <label for="info">Paid In/Out:</label>
-                        <input type="number" onmouseover="add_number()" class="form-control" name="paid_in" id="paid_in" value="{{$wallets->sum('paid_in')}}" readonly>
+                        <input type="number" class="form-control" name="paid_in" id="paid_in" value="{{$wallets->sum('paid_in')}}" readonly>
                         <div>
+                        <hr style="width:100%;">
                         <label for="info">Total:</label>
-                        <input type="number" onmouseover="add_number()" class="form-control" name="paid_total" id="paid_total" readonly>
+                        <div id="totalvalue">0</div>
                         <br>
                         <table class="table table-striped table-hover" border="1">
                         <thead>
@@ -66,8 +67,8 @@
                         <br>
                         <span class="float-right">
                         <div class="noprint">
-                        <button type="button" class="btn btn-success" onclick="myFunction()">Print</button>
-                        <input type="submit" class="btn btn-primary">
+                        <!-- <button type="button" class="btn btn-success" onclick="myFunction()">Print</button> -->
+                        <!-- <input type="submit" class="btn btn-primary"> -->
 
                         </div>
     <script>
@@ -125,5 +126,23 @@ document.getElementById("paid_total").value = result;
             }
         }
         </style>
+
+<script>
+   $(function() {
+    $('.form-control').change(function() {
+        var total = 0;
+
+        $('.form-control').each(function() {
+            if( $(this).val() != '' )
+                total += parseInt($(this).val());
+        });
+
+        $('#totalvalue').html(total);
+    })
+
+    // trigger initial calculation
+    .change();
+}); 
+</script>
 @endsection
 
