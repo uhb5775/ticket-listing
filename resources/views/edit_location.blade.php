@@ -68,8 +68,8 @@
                         <span class="float-right">
                         <div class="noprint">
                         
-                        <!-- <button type="button" class="btn btn-success" onclick="myFunction()">Print</button> -->
-                        <a href="/location/{{ $loc->id }}" class="btn btn-primary float-right" onclick="myFunction()">Print and close</a></td>
+                        <button type="button" class="btn btn-success" onclick="myFunction()">Print</button>
+                        <a href="/location/{{ $loc->id }}" class="btn btn-primary float-right" >Close drawer</a></td>
 
                        <!-- <input type="submit" class="btn btn-primary"> -->
 </form>
