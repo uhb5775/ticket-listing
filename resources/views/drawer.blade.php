@@ -2,7 +2,7 @@
 @section('content')
 
 <script src="{{ asset('js/custom.js') }}"></script>
-    <div onmouseover="add_number()" class="row justify-content-center">
+    <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Cashier<span class="float-right"><a href='/location' class="btn btn-secondary">Back</a>
@@ -11,11 +11,48 @@
                     <div class="list-group">
                         <div class="list-group-item">
                         <div class="card-body">
-                        
+                        <!-- Button set start cash -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Input start cash
+                        </button>
+                        <!-- Modal  start cash-->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Input starting cash</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            <form method="post" action="/make" name="firstform" id="form1">
+                        @csrf
+                        <select class="form-control" name="location_id" id="location_id">
+                        @if($locations->count() > 0)
+                        @foreach($locations as $location)
+                        <option>{{$location->location_id}}</option>
+                        @endForeach
+                        @else
+                        No Record Found
+                        @endif
+                        </select>
+                        <br>
+                        <label>USD $</label>
+                        <input type="number" class="form-control" name="start_cash" id="start_cash">
+                        <input type="hidden" class="form-control" name="info" id="info"value="Starting cash">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
                         </div>     
                         <form method="post" action="/make">
                         <!-- <form method="post" action="/post_drawer"> -->
-
                         @csrf           
                         <br>
                         <div class="form-group">
@@ -29,17 +66,10 @@
                         No Record Found
                             @endif
                             </select>
-               
-                        <br>
-                        <label for="paid_id">Enter start cash:</label>
-                        <input type="number" class="form-control" name="start_cash" id="start_cash">
-                        <br>
-
-                            <label for="paid_id">Make a Pay In/Out:</label>
+                            <label for="paid_in">Make a Pay In/Out:</label>
                         <input type="number" class="form-control" name="paid_in" id="paid_in">
                         <label for="info">Info:</label>
-                        <input type="text" class="form-control" name="info" id="info">
-                        
+                        <input type="text" class="form-control" name="info" id="info">     
                         </div>
                         <br>
                         <div>
@@ -49,7 +79,7 @@
                         </div>
                         <br>
                         <span class="float-right">
-                        <input type="submit" onmouseover="add_number()" class="btn btn-primary">
+                        <input type="submit" class="btn btn-primary">
                         </span>
                         </form>
                     </div>

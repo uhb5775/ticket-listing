@@ -189,7 +189,7 @@ class LocationsController extends Controller
         $wallet->info = $request->input('info');
         $wallet->save();
 
-        return redirect()->to('/index_wallet')->with('success', 'Paid In/Out maked successfully.');
+        return redirect()->back()->with('success', 'Successfully processed transaction!');
         //->to('/location')
         }
          
