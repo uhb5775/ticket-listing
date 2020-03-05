@@ -26,10 +26,10 @@
                 <div class="card-body">
                         <div class="list-group">
                         <div class="list-group-item">
-                        <a href="/agent/show_agent/" class="btn btn-success">Agents</a>
-                        <a href="/location/" class="btn btn-success">Locations</a>
-                       <a href="/orders/" class="btn btn-success">Orders</a>
-                       <a href="/drawer/" class="btn btn-primary">Pay In/Out</a>
+                        <a href="/agent/show_agent/" class="btn btn-primary">Agents</a>
+                        <a href="/location/" class="btn btn-primary">Locations</a>
+                       <a href="/orders/" class="btn btn-primary">Orders</a>
+                       <!-- <a href="/drawer/" class="btn btn-primary">Pay In/Out</a> -->
 
                         </div>
                         </div>

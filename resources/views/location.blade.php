@@ -25,17 +25,20 @@
                         <input type="hidden" name="location_id" id="location_id" value="{{$loc->location_id}}">
 
                         <label for="info">Starting cash</label>
-                        <input type="number" class="form-control" name="start_cash" id="start_cash" value="{{$wallets->sum('start_cash')}}" readonly>
-                       <br>
+                        @foreach($sales as $sales)
+                        @if($loop->last)
+                        <input type="number" class="form-control" name="start_cash" id="start_cash" value="{{$sales->start_cash}}" onchange="add_number()" readonly>
+                        @endif
+                        @endforeach                       <br>
                         <label for="info">Orders:</label>
-                        <input type="number" class="form-control" name="amount" id="amount" value="{{$locations->sum('total')}}" readonly>
+                        <input type="number" class="form-control" name="amount" id="amount" value="{{$sales->amount}}" onchange="add_number()" readonly>
                         <br>
                         <label for="info">Paid In/Out:</label>
-                        <input type="number" class="form-control" name="paid_in" id="paid_in" value="{{$wallets->sum('paid_in')}}" readonly>
+                        <input type="number" class="form-control" name="paid_in" id="paid_in" value="{{$sales->paid_in}}" onchange="add_number()" readonly>
                         <div>
                         <hr style="width:100%;">
                         <label for="info">Total:</label>
-                        <div id="totalvalue">0</div>
+                        <input type="number" class="form-control" name="paid_total" id="paid_total" readonly>
                         <br>
                         <table class="table table-striped table-hover" border="1">
                         <thead>
@@ -67,7 +70,9 @@
                         <br>
                         <span class="float-right">
                         <div class="noprint">
-                        <!-- <button type="button" class="btn btn-success" onclick="myFunction()">Print</button> -->
+                        <button type="button" class="btn btn-success" onclick="myFunction()">Print</button>
+                        <a type="button" href="/index_wallet" class="btn btn-primary">Drawers history</a>
+
                         <!-- <input type="submit" class="btn btn-primary"> -->
 
                         </div>
@@ -95,21 +100,6 @@ var panel = document.getElementById("content");
             </div>
         </div>
     </div>
-    <script type="text/javascript">
- function add_number() {
-
-var first_number = parseInt(document.getElementById("start_cash").value);
-var second_number = parseInt(document.getElementById("paid_in").value);
-// var third_number = parseInt(document.getElementById("paid_out").value);
-var fourth_number = parseInt(document.getElementById("amount").value);
-
-
-var result = first_number + second_number + fourth_number;
-
-document.getElementById("paid_total").value = result;
-}
-
-</script>
 <style>
 .noprint
         {
@@ -126,23 +116,34 @@ document.getElementById("paid_total").value = result;
             }
         }
         </style>
+ <script>
+                    $(function() {
+                        $('.form-control').change(function() {
+                            var total = 0;
 
-<script>
-   $(function() {
-    $('.form-control').change(function() {
-        var total = 0;
+                            $('.form-control').each(function() {
+                                if( $(this).val() != '' )
+                                    total += parseInt($(this).val());
+                            });
+                            $('#totalvalue').text(total);
+                        })
+                        // trigger initial calculation
+                        .change();
+                    }); 
+                    </script>
+                    <script type="text/javascript">
+ function add_number() {
 
-        $('.form-control').each(function() {
-            if( $(this).val() != '' )
-                total += parseInt($(this).val());
-        });
+var first_number = parseInt(document.getElementById("start_cash").value);
+var second_number = parseInt(document.getElementById("amount").value);
+var third_number = parseInt(document.getElementById("paid_in").value);
+// var fourth_number = parseInt(document.getElementById("amount").value);
 
-        $('#totalvalue').html(total);
-    })
 
-    // trigger initial calculation
-    .change();
-}); 
+var result = first_number + second_number + third_number;
+
+document.getElementById("paid_total").value = result;
+}
 </script>
 @endsection
 

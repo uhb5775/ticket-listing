@@ -13,7 +13,7 @@
                 <thead>
                     <tr>
                         <th>Location</th>
-                        <th>Amount</th>
+                        <th>Orders $</th>
                         <th>Paid In/Out</th>
                         <th>Total</th>
                         <th>Date</th>

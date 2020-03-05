@@ -16,4 +16,8 @@ class Sales extends Model
 // {
 //     return $this->belongsTo('App\Models\Location');
 // }
+public function salesl()
+{
+    return $this->belongsTo('App\Models\Location');      
+}
 }

@@ -59,7 +59,7 @@
 
                         <td>
                         <button type="button" onclick="minus(); sum();">-</button>
-                        <input type="number" name="quantity" id="quantity" min="0" max="50" onKeyUp="sum()">
+                        <input type="number" name="quantity" id="quantity" min="1" max="50" onKeyUp="sum()">
                         <button type="button" onclick="plus(); sum();">+</button>
                         </td>
                         </span>

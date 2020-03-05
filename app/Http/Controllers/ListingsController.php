@@ -27,8 +27,9 @@ class ListingsController extends Controller
     public function index()
     {
         $listings = Listing::all();
-        $orders = Order::all();
-        return view('index', compact('listings','orders'));
+        
+
+        return view('index', compact('listings'));
         // $listings = Listing::orderBy('created_at','desc')->get();
         // return view('index')->with('listings', $listings);
     }
