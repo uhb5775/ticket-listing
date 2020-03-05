@@ -21,4 +21,8 @@ public function locsales()
 {
     return $this->hasMany('App\Models\Wallet', 'location_id', 'location_id');      
 }
+public function salesz()
+{
+    return $this->hasMany('App\Models\Sales', 'location_id', 'location_id');      
+}
 }

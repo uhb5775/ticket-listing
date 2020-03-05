@@ -69,27 +69,34 @@ class LocationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) //location/id
     {
+        $sales = Location::find($id)->salesz()->get();
+
         $locations = Location::find($id)->orders()
         ->where('added_to_drawer', 1)
         ->whereDate('created_at', '=', Carbon::today()->toDateString()); //show orders
         
         $wallets = Location::find($id)->locsales()
-        ->where('added_to_drawer', 1)
+        // ->where('added_to_drawer', 1)
         ->whereDate('created_at', '=', Carbon::today()->toDateString())
         ->get(); //show payments
+
         $loc = Location::find($id); //to show location name
-        //reset drawer counter
-        $resetOrders = Location::find($id)->orders()->update(array('added_to_drawer' => 0));
-        $resetPayments = Location::find($id)->locsales()->update(array('added_to_drawer' => 0));
+
+        // $resetOrders = Location::find($id)->orders()->update(array('added_to_drawer' => 0));
+        // $resetPayments = Location::find($id)->locsales()->update(array('added_to_drawer' => 0));
         return view('location')
+        ->with('sales', $sales)
         ->with('locations', $locations)
         ->with('wallets', $wallets)
         ->with('loc', $loc);
     }
-    public function wallet($id)
+  
+    public function wallet($id) //location/id/up
     {
+        $sales = Location::find($id)->salesz()->get();
+
         $locations = Location::find($id)->orders()
         ->where('added_to_drawer', 1)
         ->whereDate('created_at', '=', Carbon::today()->toDateString()); //show orders
@@ -101,10 +108,10 @@ class LocationsController extends Controller
         $loc = Location::find($id); //to show location name
 
         return view('edit_location')
+        ->with('sales', $sales)
         ->with('locations', $locations)
         ->with('wallets', $wallets)
         ->with('loc', $loc);
-
     }
     /**
      * Show the form for editing the specified resource.
@@ -176,16 +183,16 @@ class LocationsController extends Controller
         $this->validate($request, [
             'location_id' => 'nullable',
             'start_cash' => 'nullable',
-            'paid_in' => 'nullable',
-            'paid_out' => 'nullable',
+            'pay_in' => 'nullable',
+            'pay_out' => 'nullable',
             'info' => 'nullable',
 
             ]);    
         $wallet = new Wallet();
         $wallet->location_id = $request->input('location_id');
         $wallet->start_cash = $request->input('start_cash');
-        $wallet->paid_in = $request->input('paid_in');
-        $wallet->paid_out = $request->input('paid_out');
+        $wallet->pay_in = $request->input('pay_in');
+        $wallet->pay_out = $request->input('pay_out');
         $wallet->info = $request->input('info');
         $wallet->save();
 

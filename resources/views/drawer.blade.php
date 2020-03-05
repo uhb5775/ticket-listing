@@ -67,7 +67,7 @@
                             @endif
                             </select>
                             <label for="paid_in">Make a Pay In/Out:</label>
-                        <input type="number" class="form-control" name="paid_in" id="paid_in">
+                        <input type="number" class="form-control" name="pay_in" id="pay_in">
                         <label for="info">Info:</label>
                         <input type="text" class="form-control" name="info" id="info">     
                         </div>
@@ -86,5 +86,26 @@
                 </div>
             </div>
         </div>
+        <input type="number" class="form-control" name="sc" id="sc" onblur="add_number()">
+        <input type="number" class="form-control" name="cs" id="cs" onblur="add_number()">
+        <input type="number" class="form-control" name="paid_total" id="paid_total">
+
+
+
     </div>
+    <script type="text/javascript">
+ function add_number() {
+
+var first_number = parseInt(document.getElementById("sc").value);
+var second_number = parseInt(document.getElementById("cs").value);
+// var third_number = parseInt(document.getElementById("paid_out").value);
+// var fourth_number = parseInt(document.getElementById("amount").value);
+
+
+var result = first_number + second_number;
+
+document.getElementById("paid_total").value = result;
+}
+
+</script>
 @endsection
