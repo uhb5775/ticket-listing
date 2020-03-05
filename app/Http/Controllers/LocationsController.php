@@ -212,10 +212,10 @@ class LocationsController extends Controller
 //show maked orders and payments
 public function indexWallet()
 {
-    // $wallets = Wallet::all();
-    // $sales = Sales::all();
-    $sales = Sales::whereRaw('Date(created_at) = CURDATE()')->get();
-    $wallets = Wallet::whereRaw('Date(created_at) = CURDATE()')->get();
+    $wallets = Wallet::all();
+    $sales = Sales::all();
+    // $sales = Sales::whereRaw('Date(created_at) = CURDATE()')->get();
+    // $wallets = Wallet::whereRaw('Date(created_at) = CURDATE()')->get();
     return view('index_wallet', compact('wallets', 'sales'));
 }
     // Page with table history of maked orders and pays

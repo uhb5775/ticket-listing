@@ -27,19 +27,19 @@
                         <label for="info">Starting cash</label>
                         @foreach($sales as $sales)
                         @if($loop->last)
-                        <input type="number" class="form-control" name="start_cash" id="start_cash" value="{{$sales->paid_total}}" onchange="add_number()">
+                        <input type="number" class="form-control" name="start_cash" id="start_cash" value="{{$sales->paid_total}}" onchange="add_number()" readonly>
                         @endif
                         @endforeach
                        <br>
                         <label for="info">Orders:</label>
-                        <input type="number" class="form-control" name="amount" id="amount" value="{{$locations->sum('total')}}" onchange="add_number()">
+                        <input type="number" class="form-control" name="amount" id="amount" value="{{$locations->sum('total')}}" onchange="add_number()" readonly>
                         <br>
                         <label for="info">Paid In/Out:</label>
-                        <input type="number" class="form-control" name="paid_in" id="paid_in" value="{{$wallets->sum('pay_in')}}" onchange="add_number()">
+                        <input type="number" class="form-control" name="paid_in" id="paid_in" value="{{$wallets->sum('pay_in')}}" onchange="add_number()" readonly>
                         <div>
                         <hr style="width:100%;">
                         <label for="info">Total:</label>
-                        <input type="number" class="form-control" name="paid_total" id="paid_total">
+                        <input type="number" class="form-control" name="paid_total" id="paid_total" readonly>
                         <br>
                         <table class="table table-striped table-hover" border="1">
                         <thead>
@@ -77,7 +77,9 @@
                         <span class="float-right">
                         <!-- <button type="button" class="btn btn-primary" onclick ="disable()">Close drawer</button> 
                         <button type="button" class="btn btn-success" onclick="myFunction()">Print</button> -->
-                        <button type="submit" class="btn btn-primary">Close drawer</button>
+                        <!-- <button type="submit" class="btn btn-primary">Close drawer</button> -->
+                        <a type="submit" href="/location/{{ $loc->id }}" class="btn btn-primary float-right" >Close drawer</a>
+
                         </td>
                         </form>  
                         <br> 
