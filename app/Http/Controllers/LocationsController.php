@@ -239,9 +239,7 @@ public function indexWallet()
         $wallet->paid_in = $request->input('paid_in');
         $wallet->paid_out = $request->input('paid_out');
         $wallet->paid_total = $request->input('paid_total');
-        $affected = DB::table('orders')->update(array('added_to_drawer' => 0));
-        $affected = DB::table('wallets')->update(array('added_to_drawer' => 0));
         $wallet->save();
-        return redirect()->to('/index_wallet')->with('success', 'Drawer closed successfully.');
+        return redirect()->back()->with('success', 'Drawer closed successfully.');
     }
 }
