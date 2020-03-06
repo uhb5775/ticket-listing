@@ -70,14 +70,10 @@
                         </div>
                         <br>
                         <div class="noprint">
-                        <span class="float-left">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">Make a payment</button>
-
-                        </span>
+                        
                         <span class="float-right">
-                        <!-- <button type="button" class="btn btn-primary" onclick ="disable()">Close drawer</button> 
-                        <button type="button" class="btn btn-success" onclick="myFunction()">Print</button> -->
-                        <!-- <button type="submit" class="btn btn-primary">Close drawer</button> -->
+                 
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">Make a payment</button>
                         <a type="submit" href="/location/{{ $loc->id }}" class="btn btn-primary float-right" >Close drawer</a>
 
                         </td>

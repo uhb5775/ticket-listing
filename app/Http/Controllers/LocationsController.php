@@ -84,8 +84,8 @@ class LocationsController extends Controller
 
         $loc = Location::find($id); //to show location name
 
-        // $resetOrders = Location::find($id)->orders()->update(array('added_to_drawer' => 0));
-        // $resetPayments = Location::find($id)->locsales()->update(array('added_to_drawer' => 0));
+        $resetOrders = Location::find($id)->orders()->update(array('added_to_drawer' => 0));
+        $resetPayments = Location::find($id)->locsales()->update(array('added_to_drawer' => 0));
         return view('location')
         ->with('sales', $sales)
         ->with('locations', $locations)
