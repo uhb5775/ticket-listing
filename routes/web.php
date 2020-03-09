@@ -34,6 +34,8 @@ Route::resource('location', 'LocationsController');
  Route::get('/drawer', 'LocationsController@drawer');
  Route::post('/post_drawer', 'LocationsController@post_drawer');
  Route::get('/location/{id}/up','LocationsController@wallet');
+ Route::post('/start', 'LocationsController@start'); //set start cash
+
 //  Route::get('/reset/{id}','LocationsController@update');
 
 //  Route::get('/drawer/{id}','LocationsController@reset');
