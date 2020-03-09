@@ -141,10 +141,27 @@ class LocationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'location_id' => 'nullable',
+            'start_cash' => 'nullable',
+            'amount' => 'nullable',
+            'paid_in' => 'nullable',
+            'paid_out' => 'nullable',
+            'paid_total' => 'nullable',
+            ]);    
+        // $wallet = Sales::find($id);
+        $wallet = new Sales();
         $resetOrders = Location::find($id)->orders()->update(array('added_to_drawer' => 0));
         $resetPayments = Location::find($id)->locsales()->update(array('added_to_drawer' => 0));
+        $wallet->location_id = $request->input('location_id');
+        $wallet->start_cash = $request->input('start_cash');
+        $wallet->amount = $request->input('amount');
+        $wallet->paid_in = $request->input('paid_in');
+        $wallet->paid_out = $request->input('paid_out');
+        $wallet->paid_total = $request->input('paid_total');
+        $wallet->save();
         return redirect()->to('/drawer')->with('success', 'Drawer closed successfully.');
 
     }
