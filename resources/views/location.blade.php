@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Drawer report<span class="float-right">
                 <div class="noprint">
-                <a href='/location' class="btn btn-secondary">Back</a>
+                <!-- <a href='/location' class="btn btn-secondary">Back</a> -->
                 </div>
                 </div>                                  
                 <div class="card-body">
@@ -54,7 +54,7 @@
 
                         @foreach ($wallets as $wallet)
                         <tr> 
-                        <td>{{ $wallet->paid_in }}</td>
+                        <td>{{ $wallet->pay_in }}</td>
                         <td>{{$wallet->info}}</td>
                         <td>{{$wallet->created_at}}</td>
                         </tr>
@@ -71,8 +71,10 @@
                         <br>
                         <span class="float-right">
                         <div class="noprint">
-                        <!-- <button type="button" class="btn btn-success" onclick="myFunction()">Print</button> -->
-                        <a type="button" href="/index_wallet" class="btn btn-primary">Drawers history</a>
+                        <button type="button" class="btn btn-success" onclick="myFunction()">Print</button>
+                        <!-- <a type="button" href="/index_wallet" class="btn btn-primary">Drawers history</a> -->
+                        <a href="{{action('LocationsController@update', $loc->id)}}">Button</a>
+
                         <!-- <input type="submit" class="btn btn-primary"> -->
                         </div>
     <script>

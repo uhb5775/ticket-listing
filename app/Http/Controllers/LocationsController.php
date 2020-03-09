@@ -78,14 +78,14 @@ class LocationsController extends Controller
         ->whereDate('created_at', '=', Carbon::today()->toDateString()); //show orders
         
         $wallets = Location::find($id)->locsales()
-        // ->where('added_to_drawer', 1)
+        ->where('added_to_drawer', 1)
         ->whereDate('created_at', '=', Carbon::today()->toDateString())
         ->get(); //show payments
 
         $loc = Location::find($id); //to show location name
 
-        $resetOrders = Location::find($id)->orders()->update(array('added_to_drawer' => 0));
-        $resetPayments = Location::find($id)->locsales()->update(array('added_to_drawer' => 0));
+        // $resetOrders = Location::find($id)->orders()->update(array('added_to_drawer' => 0));
+        // $resetPayments = Location::find($id)->locsales()->update(array('added_to_drawer' => 0));
         return view('location')
         ->with('sales', $sales)
         ->with('locations', $locations)
@@ -141,27 +141,13 @@ class LocationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    // {
-    //     $this->validate($request, [
-    //         'location_id' => 'nullable',
-    //         'start_cash' => 'nullable',
-    //         'end_cash' => 'nullable',
-    //         'paid_in' => 'nullable',
-    //         'paid_out' => 'nullable',
+    public function update($id)
+    {
+        $resetOrders = Location::find($id)->orders()->update(array('added_to_drawer' => 0));
+        $resetPayments = Location::find($id)->locsales()->update(array('added_to_drawer' => 0));
+        return redirect()->to('/drawer')->with('success', 'Drawer closed successfully.');
 
-    //     ]);
-
-    //     $location = Location::find($id);
-    //     $location->location_id = $request->input('location_id');
-    //     $location->start_cash = $request->input('start_cash');
-    //     $location->end_cash = $request->input('end_cash');
-    //     $location->paid_in = $request->input('paid_in');
-    //     $location->paid_out = $request->input('paid_out');
-
-    //     $location->save();
-    //     return redirect()->to('/location')->with('success', 'Updated successfully');
-    // }
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -240,6 +226,6 @@ public function indexWallet()
         $wallet->paid_out = $request->input('paid_out');
         $wallet->paid_total = $request->input('paid_total');
         $wallet->save();
-        return redirect()->back()->with('success', 'Drawer closed successfully.');
+        return redirect()->back()->with('success', 'Submitted successfully.');
     }
 }
