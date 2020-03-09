@@ -82,7 +82,6 @@
                         </span>
                         <span class="float-right">
                         <button type="submit" class="btn btn-primary" >Close drawer</button>
-                        <!-- <a class="btn btn-primary" href="{{action('LocationsController@reset', $loc->id)}}">Start new</a> -->
 
                         <!-- <button type="button" href="/location/{{ $loc->id }}" class="btn btn-secondary">Print</button> -->
                         <!-- <button type="button" onclick="myFunction()" class="btn btn-success">Print</button> -->

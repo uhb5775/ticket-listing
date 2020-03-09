@@ -12,7 +12,7 @@
                         <div class="list-group-item">
                         <div class="card-body">
                         
-                        <form method="post" action="/make">
+                        <form method="post" action="/start">
                         <!-- <form method="post" action="/post_drawer"> -->
                         @csrf           
                         <br>

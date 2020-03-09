@@ -179,7 +179,22 @@ class LocationsController extends Controller
 
         return redirect()->to('/location')->with('success', 'Location deleted successfully.');
     }
+    public function start(Request $request)
+    {
+        $this->validate($request, [
+            'location_id' => 'nullable',
+            'start_cash' => 'nullable',
+            'info' => 'nullable',
 
+            ]);    
+        $wallet = new Wallet();
+        $wallet->location_id = $request->input('location_id');
+        $wallet->start_cash = $request->input('start_cash');
+        $wallet->info = $request->input('info');
+        $wallet->save();
+
+        return redirect()->to('/location')->with('success', 'Starting cash added succesfully.');
+        }
     //Validation for In/Out payment
     public function record(Request $request)
     {
