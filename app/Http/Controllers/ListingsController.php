@@ -117,9 +117,9 @@ class ListingsController extends Controller
     {
         $this->validate($request, [
             'event' => 'required',
-            'date' => 'required',
-            'price' => 'required',
-            'info' => 'required',
+            'date' => 'nullable',
+            'price' => 'nullable',
+            'info' => 'nullable',
             // 'total' => 'nullable',
         ]);
         $listing = Listing::find($id);

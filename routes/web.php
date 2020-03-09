@@ -34,6 +34,10 @@ Route::resource('location', 'LocationsController');
  Route::get('/drawer', 'LocationsController@drawer');
  Route::post('/post_drawer', 'LocationsController@post_drawer');
  Route::get('/location/{id}/up','LocationsController@wallet');
- Route::get('/location/{id}/f','LocationsController@update');
+//  Route::get('/reset/{id}','LocationsController@update');
+
+//  Route::get('/drawer/{id}','LocationsController@reset');
+//  Route::put('/reset/{id}', 'LocationsController@reset');
+
 
  

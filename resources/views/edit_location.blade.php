@@ -23,9 +23,10 @@
                         </div>     
                      
 <!-- <a href="{{action('LocationsController@update', $loc->id)}}">Link name/Embedded Button</a> -->
-
-                        <form method="post" action="/post_drawer">
-                        @csrf           
+<form method="post" action="/location/{{ $loc->id }}">
+                        @csrf
+                        @method('PUT')
+           
                         <br>
                         <input type="hidden" name="location_id" id="location_id" value="{{$loc->location_id}}">
                         <label for="info">Starting cash</label>
@@ -81,7 +82,7 @@
                         </span>
                         <span class="float-right">
                         <button type="submit" class="btn btn-primary" >Close drawer</button>
-                        <a class="btn btn-primary" href="{{action('LocationsController@update', $loc->id)}}">Start new</a>
+                        <!-- <a class="btn btn-primary" href="{{action('LocationsController@reset', $loc->id)}}">Start new</a> -->
 
                         <!-- <button type="button" href="/location/{{ $loc->id }}" class="btn btn-secondary">Print</button> -->
                         <!-- <button type="button" onclick="myFunction()" class="btn btn-success">Print</button> -->
@@ -318,3 +319,29 @@ fdgdf  </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form> -->
+
+<!-- //////////////////////////////////////////////////////////////
+<form method="post" action="/location/{{ $loc->id }}">
+@csrf
+@method('PUT')
+<div class="form-group" >
+<input type="hidden" name="location_id" id="location_id" value="{{$loc->location_id}}">
+                        <label for="info">Starting cash</label>
+                 
+                        <input type="number" class="form-control" name="start_cash" id="start_cash" value="{{$wallets->sum('start_cash')}}" onchange="add_number()" readonly>   
+                        <label for="info">Orders:</label>
+                        <input type="number" class="form-control" name="amount" id="amount" value="{{$locations->sum('total')}}" onchange="add_number()" readonly>
+                        <label for="info">Paid In:</label>
+                        <input type="number" class="form-control" name="paid_in" id="paid_in" value="{{$wallets->sum('pay_in')}}" onchange="add_number()" readonly>
+                        <label for="info">Paid Out:</label>
+                        <input type="number" class="form-control" name="paid_out" id="paid_out" value="{{$wallets->sum('pay_out')}}" onchange="add_number()" readonly>
+                        <div>
+                        <hr style="width:100%;">
+                        <label for="info">Total:</label>
+                        <input type="number" class="form-control" name="paid_total" id="paid_total" readonly>
+                        <br>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+//////////////////////////////////////////////////////////////// -->
