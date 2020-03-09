@@ -7,7 +7,9 @@
             <div class="card">
                 <div class="card-header">Drawer report<span class="float-right">
                 <div class="noprint">
+                <button type="button" onclick="myFunction()" class="btn btn-success">Print</button>
                 <a href='/location' class="btn btn-secondary">Back</a>
+                
                 </div>
                 </div>                                  
                 <div class="card-body">
@@ -19,6 +21,9 @@
                         <div class="list-group-item">
                         <label for="location">Location: {{$loc->location_id}}</label>
                         </div>     
+                     
+<!-- <a href="{{action('LocationsController@update', $loc->id)}}">Link name/Embedded Button</a> -->
+
                         <form method="post" action="/post_drawer">
                         @csrf           
                         <br>
@@ -70,14 +75,16 @@
                         <div class="noprint">
                         
                         <span class="float-left">
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal1">Enter start cash</button>
+                        <!-- <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal1">Enter start cash</button> -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">Pay in</button>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">Pay out</button>
                         </span>
                         <span class="float-right">
-                        <button type="submit" class="btn btn-primary" >Close</button>
+                        <button type="submit" class="btn btn-primary" >Close drawer</button>
+                        <a class="btn btn-primary" href="{{action('LocationsController@update', $loc->id)}}">Start new</a>
+
                         <!-- <button type="button" href="/location/{{ $loc->id }}" class="btn btn-secondary">Print</button> -->
-                        <a type="button" href="/location/{{ $loc->id }}" onclick="myFunction()" class="btn btn-success">Print</a>
+                        <!-- <button type="button" onclick="myFunction()" class="btn btn-success">Print</button> -->
                         </td>
                         </form>  
                         <br> 
@@ -271,7 +278,7 @@ var panel = document.getElementById("content");
 <style>
 .noprint
         {
-            color:red;
+            color:black;
         }
         @media print {
             p
@@ -301,3 +308,13 @@ else {
 
 }
 </script> -->
+<!-- reset cash
+<form method="post" action="/location/{{ $loc->id }}">
+@csrf
+@method('PUT')
+<div class="form-group" >
+    <label for="agent">Event name</label>
+fdgdf  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form> -->
