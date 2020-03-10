@@ -57,6 +57,8 @@
    <script>
    $(document).ready( function () {
     $('#laravel_datatable').DataTable({
+        // columnDefs: [ { type: 'date', 'targets': [6] } ],
+        order: [[ 6, 'desc' ]], 
       "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
  
