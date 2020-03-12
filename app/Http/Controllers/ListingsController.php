@@ -59,15 +59,10 @@ class ListingsController extends Controller
             'date' => 'nullable',
             'price' => 'nullable',
             'info' => 'nullable',
-            // 'total' => 'nullable',
         ]);
         $listing = new Listing();
         $listing->user_id = Auth::id();
         $listing->event = $request->input('event');
-        // $listing->date = $request->input('date');
-        // $listing->price = $request->input('price');
-        // $listing->info = $request->input('info');
-        // $listing->total = $request->input('total');
         $listing->save();
 
         return redirect()->to('/home')->with('success', 'Listing created successfully.');
