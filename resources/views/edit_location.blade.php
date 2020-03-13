@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('content')
 
@@ -17,7 +18,7 @@
                         <div class="list-group-item">
                         <div class="card-body">
                         
-                        <div class="form-group">
+                        <div class="table-responsive">
                         <div class="list-group-item">
                         <label for="location">Location: {{$loc->location_id}}</label>
                         </div>     
@@ -84,7 +85,6 @@
                         <button type="submit" class="btn btn-primary" >Close drawer</button>
 
                         <!-- <button type="button" href="/location/{{ $loc->id }}" class="btn btn-secondary">Print</button> -->
-                        <!-- <button type="button" onclick="myFunction()" class="btn btn-success">Print</button> -->
                         </td>
                         </form>  
                         <br> 
@@ -267,14 +267,9 @@ var panel = document.getElementById("content");
             return false;
         }
 </script>
-                        </span>
-                        </form>
                     </div>
-                   
                 </div>
             </div>
-        </div>
-    </div>
 <style>
 .noprint
         {
@@ -292,55 +287,3 @@ var panel = document.getElementById("content");
         }
         </style>
 @endsection
-<!-- <script>
-function function() {
-
-var btn = document.getElementById("button");
-
-if (btn.value == "Open drawer") {
-    btn.value = "Close";
-    btn.innerHTML = "Close";
-}
-else {
-    btn.value = "Open drawer";
-    btn.innerHTML = "Open drawer";
-}
-
-}
-</script> -->
-<!-- reset cash
-<form method="post" action="/location/{{ $loc->id }}">
-@csrf
-@method('PUT')
-<div class="form-group" >
-    <label for="agent">Event name</label>
-fdgdf  </div>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form> -->
-
-<!-- //////////////////////////////////////////////////////////////
-<form method="post" action="/location/{{ $loc->id }}">
-@csrf
-@method('PUT')
-<div class="form-group" >
-<input type="hidden" name="location_id" id="location_id" value="{{$loc->location_id}}">
-                        <label for="info">Starting cash</label>
-                 
-                        <input type="number" class="form-control" name="start_cash" id="start_cash" value="{{$wallets->sum('start_cash')}}" onchange="add_number()" readonly>   
-                        <label for="info">Orders:</label>
-                        <input type="number" class="form-control" name="amount" id="amount" value="{{$locations->sum('total')}}" onchange="add_number()" readonly>
-                        <label for="info">Paid In:</label>
-                        <input type="number" class="form-control" name="paid_in" id="paid_in" value="{{$wallets->sum('pay_in')}}" onchange="add_number()" readonly>
-                        <label for="info">Paid Out:</label>
-                        <input type="number" class="form-control" name="paid_out" id="paid_out" value="{{$wallets->sum('pay_out')}}" onchange="add_number()" readonly>
-                        <div>
-                        <hr style="width:100%;">
-                        <label for="info">Total:</label>
-                        <input type="number" class="form-control" name="paid_total" id="paid_total" readonly>
-                        <br>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-//////////////////////////////////////////////////////////////// -->
