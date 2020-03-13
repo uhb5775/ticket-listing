@@ -149,7 +149,9 @@ class LocationsController extends Controller
         // $wallet = Sales::find($id);
         $wallet = new Sales();
         $resetOrders = Location::find($id)->orders()->update(array('added_to_drawer' => 0)); //reset orders counting
-        $resetPayments = Location::find($id)->locsales()->where('added_to_drawer', '=', '1')->delete(); //reset payments counting
+        $resetPayments = Location::find($id)->locsales()
+        ->where('info', '=', 'start cash')
+        ->where('added_to_drawer', '=', '1')->delete(); //reset payments counting
 
         $wallet->location_id = $request->input('location_id');
         $wallet->start_cash = $request->input('start_cash');
