@@ -54,7 +54,6 @@ class LocationsController extends Controller
     {
         $this->validate($request, [
             'location_id' => 'required',
-
             ]);    
         $location = new Location();
         $location->location_id = $request->input('location_id');
@@ -81,11 +80,7 @@ class LocationsController extends Controller
         ->where('added_to_drawer', 1)
         ->whereDate('created_at', '=', Carbon::today()->toDateString())
         ->get(); //show payments
-
         $loc = Location::find($id); //to show location name
-
-        // $resetOrders = Location::find($id)->orders()->update(array('added_to_drawer' => 0));
-        // $resetPayments = Location::find($id)->locsales()->update(array('added_to_drawer' => 0));
         return view('location')
         ->with('sales', $sales)
         ->with('locations', $locations)
@@ -98,12 +93,12 @@ class LocationsController extends Controller
         $sales = Location::find($id)->salesz()->get();
 
         $locations = Location::find($id)->orders()
-        ->where('added_to_drawer', 1)
-        ->whereDate('created_at', '=', Carbon::today()->toDateString()); //show orders
+        ->where('added_to_drawer', 1);
+        // ->whereDate('created_at', '=', Carbon::today()->toDateString()); //show orders
         
         $wallets = Location::find($id)->locsales()
         ->where('added_to_drawer', 1)
-        ->whereDate('created_at', '=', Carbon::today()->toDateString())
+        // ->whereDate('created_at', '=', Carbon::today()->toDateString())
         ->get(); //show payments
         $loc = Location::find($id); //to show location name
 
@@ -153,8 +148,9 @@ class LocationsController extends Controller
             ]);    
         // $wallet = Sales::find($id);
         $wallet = new Sales();
-        $resetOrders = Location::find($id)->orders()->update(array('added_to_drawer' => 0));
-        $resetPayments = Location::find($id)->locsales()->update(array('added_to_drawer' => 0));
+        $resetOrders = Location::find($id)->orders()->update(array('added_to_drawer' => 0)); //reset orders counting
+        $resetPayments = Location::find($id)->locsales()->where('added_to_drawer', '=', '1')->delete(); //reset payments counting
+
         $wallet->location_id = $request->input('location_id');
         $wallet->start_cash = $request->input('start_cash');
         $wallet->amount = $request->input('amount');
