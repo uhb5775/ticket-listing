@@ -85,7 +85,6 @@
                         <button type="submit" class="btn btn-primary" >Close drawer</button>
 
                         <!-- <button type="button" href="/location/{{ $loc->id }}" class="btn btn-secondary">Print</button> -->
-                        <!-- <button type="button" onclick="myFunction()" class="btn btn-success">Print</button> -->
                         </td>
                         </form>  
                         <br> 
