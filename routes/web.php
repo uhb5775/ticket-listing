@@ -29,7 +29,7 @@ Route::resource('location', 'LocationsController');
 
  //wallet+sales
  Route::get('/wallet/{id}', 'LocationsController@wallet');
- Route::get('/index_wallet', 'LocationsController@indexWallet');
+ Route::get('/wallet', 'LocationsController@indexWallet');
  Route::post('/make', 'LocationsController@record');
  Route::get('/drawer', 'LocationsController@drawer');
  Route::post('/post_drawer', 'LocationsController@post_drawer');
