@@ -29,6 +29,8 @@
                         <a href="/agent/show_agent/" class="btn btn-primary">Agents</a>
                         <a href="/location/" class="btn btn-primary">Locations</a>
                        <a href="/orders/" class="btn btn-primary">Orders</a>
+                       <a href="/wallet/" class="btn btn-secondary">Closed drawers</a>
+
                        <!-- <a href="/drawer/" class="btn btn-primary">Pay In/Out</a> -->
 
                         </div>
